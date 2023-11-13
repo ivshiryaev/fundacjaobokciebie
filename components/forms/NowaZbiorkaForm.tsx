@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { FormValidation, NowaZbiorkaSchema } from '@/lib/validations/NowaZbiorkaForm'
 
-import { submitNowaZbiorkaForm } from '@/lib/actions/formSpree.actions.ts'
+import { submitNowaZbiorkaForm } from '@/lib/actions/formSpree.actions'
 
 function NowaZbiorkaForm() {
 	const [isSubmitSuccesfull, setIsSubmitSuccesfull] = useState(false)
@@ -110,7 +110,6 @@ function NowaZbiorkaForm() {
 					outline outline-1 outline-primary
 				'
 				placeholder='Opis...'
-				type="text"
 				{...register('opis')}
 			/>
 			{errors?.opis?.message && <p className='text-sm'>{errors.opis?.message}</p>}

@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { FormValidation, WolontariatFormSchema } from '@/lib/validations/WolontariatForm'
 
-import { submitWolontariatForm } from '@/lib/actions/formSpree.actions.ts'
+import { submitWolontariatForm } from '@/lib/actions/formSpree.actions'
 
 function WolontariatForm() {
 	const [isSubmitSuccesfull, setIsSubmitSuccesfull] = useState(false)
@@ -98,7 +98,6 @@ function WolontariatForm() {
 					outline outline-1 outline-primary
 				'
 				placeholder='Napisz kiedy jesteś dostępny ? Ile masz wolnego czasu ? Odpiszemy i coś ci zaproponujemy :)'
-				type="text"
 				{...register('opis')}
 			/>
 			{errors?.opis?.message && <p className='text-sm'>{errors.opis?.message}</p>}

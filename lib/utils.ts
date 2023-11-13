@@ -8,9 +8,9 @@ const moment = require('moment')
 export function centsToValue({valueInCents}:{valueInCents: number}){
 	const input = valueInCents;
 
-	const convertedValue = (input / 100).toFixed(2);
+	const convertedValue = (input / 100);
 
-	return convertedValue
+	return Number(convertedValue).toFixed(2);
 }
 
 /**
@@ -19,7 +19,7 @@ export function centsToValue({valueInCents}:{valueInCents: number}){
  * @param {number} totalGoal - The total fundraising goal.
  * @returns {number} - The fundraising percentage.
  */
-export function countPercentage(fundraisedAmount, totalGoal){
+export function countPercentage(fundraisedAmount: number, totalGoal: number){
 	if (totalGoal <= 0) {
 		return 0; // Avoid division by zero
 	}
@@ -36,14 +36,14 @@ export function countPercentage(fundraisedAmount, totalGoal){
  * @param {number} value - The value to determine the number of balloons.
  * @returns {number} - The number of balloons to display.
  */
-export function countBaloons(value){
+export function countBaloons(value: number){
 	if(value >= 50 && value < 100) return 2
 	if(value >= 100) return 3
 
 	return 1
 }
 
-export function convertUnixTimeFormatToDDMMYYYY(rawDate: string){
+export function convertUnixTimeFormatToDDMMYYYY(rawDate: number){
 	const convertedDate = moment.unix(rawDate)
 
 	const DDMMYYYY = moment(convertedDate).format('L')

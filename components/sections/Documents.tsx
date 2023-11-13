@@ -3,7 +3,7 @@ import { snap } from '@/app/fonts'
 import Button from '@/components/button/Button'
 import Link from 'next/link'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Documents() {
 	return (

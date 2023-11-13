@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Navbar() {
 	const pathname = usePathname()

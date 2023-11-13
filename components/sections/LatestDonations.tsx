@@ -2,14 +2,110 @@ import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 import Donation from '@/components/shared/Donation'
 
-import { getPaidCheckoutSessions } from '@/lib/actions/stripe.actions.ts'
+import { getPaidCheckoutSessions } from '@/lib/actions/stripe.actions'
 
-import data from '@/constants/data'
+import Slide from '@/components/animations/Slide'
+
+import data from '@/constants/data.json'
 
 async function LatestDonations() {
+
+	//PRODUCTION
 	const donations = await getPaidCheckoutSessions({limit: 9})
 
-	// console.log(donations[0].custom_fields)
+	//TESTING
+	// const donations = [
+	// 	{
+	// 		amount_total:2000,
+	// 		created:1699888196,
+	// 		custom_fields:[
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:'Valera'
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:'Powodzenia życzę !'
+	// 				}
+	// 			}
+	// 		]
+	// 	},
+	// 	{
+	// 		amount_total:5000,
+	// 		created:1699888196,
+	// 		custom_fields:[
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:'Piotr Barczyński'
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:''
+	// 				}
+	// 			}
+	// 		]
+	// 	},
+	// 	{
+	// 		amount_total:10000,
+	// 		created:1699888196,
+	// 		custom_fields:[
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:'Paweł'
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:'Jak najwięcej zdrówka !'
+	// 				}
+	// 			}
+	// 		]
+	// 	},
+	// 	{
+	// 		amount_total:2000,
+	// 		created:1699888196,
+	// 		custom_fields:[
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:''
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:''
+	// 				}
+	// 			}
+	// 		]
+	// 	},
+	// 	{
+	// 		amount_total:3000,
+	// 		created:1699888196,
+	// 		custom_fields:[
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:''
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'text',
+	// 				text:{
+	// 					value:''
+	// 				}
+	// 			}
+	// 		]
+	// 	}
+	// ]
 
 	return (
 		<Section
@@ -38,35 +134,18 @@ async function LatestDonations() {
 					gap-[1rem]
 				'
 			>
-				{/*<Donation
-					name='Wiktor Zambrowicz'
-					date='12.03.2023 16:30:31'
-					value='2000'
-					comment='Powodzonka !'
-				/>
-				<Donation
-					name='Anonimowa wpłata'
-					date='01.02.2022 13:01:31'
-					value='5000'
-				/>
-				<Donation
-					name='Anonimowa wpłata'
-					date='01.02.2022 13:01:31'
-					value='10000'
-				/>
-				<Donation
-					name='Wiktor Majtkowicz'
-					date='01.02.2022 13:01:31'
-					value='3000'
-				/>*/}
 				{donations.map((item,idx)=>(
-					<Donation
+					<Slide 
+						verticalDirection='up'
 						key={idx}
-						name={item?.custom_fields[0]?.text?.value}
-						comment={item?.custom_fields[1]?.text?.value}
-						date={item.created}
-						value={item.amount_total}
-					/>
+						className='w-full'
+					>
+						<Donation
+							custom_fields={item?.custom_fields}
+							date={item.created}
+							value={item.amount_total}
+						/>
+					</Slide>
 				))}
 			</div>
 		</Section>

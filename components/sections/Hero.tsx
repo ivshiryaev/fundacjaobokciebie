@@ -4,7 +4,7 @@ import Section from '@/components/shared/Section'
 import Button from '@/components/button/Button'
 
 import { snap } from '@/app/fonts'
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Hero() {
 	return (

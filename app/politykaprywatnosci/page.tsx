@@ -1,7 +1,7 @@
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function PolitykaPrywatnosci() {
 	return (

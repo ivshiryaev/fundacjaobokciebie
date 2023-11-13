@@ -3,7 +3,7 @@ import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 import ContactForm from '@/components/forms/ContactForm'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Contact() {
 	return (

@@ -5,7 +5,7 @@ import { snap } from '@/app/fonts'
 
 import { BsInstagram, BsFacebook } from 'react-icons/bs'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Footer() {
 	return (
@@ -56,11 +56,13 @@ function Footer() {
 					hover:scale-105
 				'
 			>
-				<Image
-					src='/images/logo.png'
-					alt='logo'
-					fill
-				/>
+				<Link href='/'>
+					<Image
+						src='/images/logo.png'
+						alt='logo'
+						fill
+					/>
+				</Link>
 			</div>
 		</footer>
 	)

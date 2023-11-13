@@ -1,10 +1,20 @@
 [
 	{
+		"photos":[
+			{
+				"name":"Photo1",
+				"href":"/images/MarysiaKlausiuk.jpg"
+			},
+			{
+				"name":"Photo2",
+				"href":"/images/MarysiaKlausiuk.jpg"
+			}
+		],
 		"name":"Marysia Klausiuk",
 		"description":"SMA",
 		"city":"Warszawa",
 		"age":7,
-		"opisChoroby":"Jak Marysia się urodziła, na początku wszystko było dobrze. W wieku 1 roku i 6 miesięcy zauważyliśmy, że zmienił się chód córki, pojawiło się płaskostopie...\n\nPóźniej zaczęła często padać. Szukając właściwej diagnozy, straciliśmy 2,5 roku. Natychmiast podjęto decyzję o leczeniu w Warszawie. W chwili otrzymania leku Marysia już nie mogła nawet samodzielnie stanąć\n\nAle wraz z początkiem leczenia siły Marysi zaczęły stopniowo wracać. Na nowo uczy się chodzić.\n\nDo tej pory dostała 9 zastrzyków leku Spinrazy.Marysia już chodzi w ortezach trzymając się za rękę lub w chodziku.Może trochę stać bez ortezy i zrobić kilka kroków. Za każdym razem wypowiada jedno życzenie: „Chcę chodzić”.",
+		"opisChoroby":"Jak Marysia się urodziła, na początku wszystko było dobrze. W wieku 1 roku i 6 miesięcy zauważyliśmy, że zmienił się chód córki, pojawiło się płaskostopie...\n\nPóźniej zaczęła często padać. Szukając właściwej diagnozy, straciliśmy 2,5 roku. Natychmiast podjęto decyzję o leczeniu w Warszawie. W chwili otrzymania leku Marysia już nie mogła nawet samodzielnie stanąć\n\nAle wraz z początkiem leczenia siły Marysi zaczęły stopniowo wracać. Na nowo uczy się chodzić.\n\nDo tej pory dostała 9 zastrzyków leku Spinrazy.Marysia już chodzi w ortezach trzymając się za rękę lub w chodziku.Może trochę stać bez ortezy i zrobić kilka kroków. Za każdym razem wypowiada jedno życzenie: „Chcę chodzić”.\n\nRobimy wszystko, co możliwe i niemożliwe: raz w tygodniu uczęszczamy na hipoterapię, bezpłatne zajęcia z fizjoterapeutą, ćwiczymy w domu, kilka razy w roku uczęszczamy na płatne rehabilitacje.\n\nDlatego wszystkie pieniądze są przeznaczone na rehabilitację, produkty ortopedyczne, sprzęt techniczny. Z tego powodu że Marysia rośnie, trzeba co roku zmieniać ortezy, gorsety, specjalne buty na ortezy.\n\nLiczymy na wasze wsparcie.\nDzięki wam Marysia może chodzić :)",
 		"totalGoal":12500,
 		"href":"MarysiaKlausiuk",
 		"paymentLinkId":"plink_1Mf6MqJQaQayrDIXPPig8e5j",
@@ -12,13 +22,44 @@
 		"zbiorkaId":"MarysiaKlausiuk"
 	},
 	{
+		"photos":[
+			{
+				"name":"Photo1",
+				"href":"/images/EwaKlausiuk.jpg"
+			},
+			{
+				"name":"Photo2",
+				"href":"/images/EwaKlausiuk.jpg"
+			}
+		],
 		"name":"Ewa Klausiuk",
 		"description":"MPD",
-		"city":"Gdańsk",
+		"city":"Białoruś",
 		"age":4,
-		"totalGoal":"13000",
+		"opisChoroby":"Nasza Ewa urodziła się w 37,5 tyg. ciąży. Cierpiała wewnątrzmaciczne niedotlenienie mózgu i infekcję dróg oddechowych.\n\nLekarzy postawili diagnozę: mózgowe porażenie dziecięce, niedowład czterokończynowy spastyczny III stopnia.\n\nPo urodzeniu miała 1,5 miesiąca na karmieniu przez sondę i 2,5 tygodnia na sztucznej wentylacji płuc. Od samego urodzenia toczyła się walka o każdą zjedzoną łyżkę pokarmu i każdą wypitą kroplę wody. Każde karmienie trwało do 1,5 godziny.\n\nEwa ma bardzo \"zainteresowany\" charakter i ogromną chęć poznawania całego świata.\n\nW ubiegłym roku podczas rehabilitacji nauczyła się siadać i chodzić z podpórką, czas karmienia został skrócony do 30-40 minut.\n\nWykonuje zadania specjalistów i rodziców, kocha muzykę, uczy się komunikować z otaczającym ją światem. Ma bardzo duże perspektywy na zdobycie nowych umiejętności i przywrócenie większej ilości funkcji mózgu.\n\nDopóki Ewa jest młoda, będziemy walczyć o jej życie, nie poddamy się.\n\nBędziemy kontynuować rehabilitację !",
+		"totalGoal":13000,
 		"href":"EwaKlausiuk",
 		"paymentLinkId":"plink_1MkyYWJQaQayrDIXl61k6bHF",
 		"paymentLinkUrl":"https://donate.stripe.com/dR6cP1bpNbe28z6eUY"
+	},
+	{
+		"photos":[
+			{
+				"name":"Photo1",
+				"href":"/images/DawidSukhomlyn.jpg"
+			},
+			{
+				"name":"Photo2",
+				"href":"/images/DawidSukhomlyn.jpg"
+			}
+		],
+		"name":"Dawid Sukhomlyn",
+		"description":"MPD",
+		"city":"Kyiv",
+		"age":4,
+		"opisChoroby":"Krwotok do mózgu, który wystąpił w 1 tygodniu życia, pozbawił Dawida zdrowego, szczęśliwego dzieciństwa.\n\nDiagnoza: porażenie mózgu zaskoczyło rodzinę chłopca, ale radzą sobie i przechodzą przez wszystkie etapy leczenia.\n\nDawid jest bardzo silnym chłopcem i ma dobre wyniki z rehabilitacji, ale potrzebuje pomocy!\n\nDawid urodził się w 30 tygodniu ciąży o wadze zaledwie 1 350 gramów i wzroście 40 cm, powodem tego była zidentyfikowana diagnoza rak u matki chłopca.\n\nMały Dawid od pierwszego dnia życia nie był w objęciach mamy, ale w licznych rurkach i czujnikach... \n\nDawid spędził 2 miesiące w reanimacji. W tym czasie matka chłopca przeszła chemioterapię. Kiedy mama Dawida skończyła leczenie, a chłopiec został wypisany do domu, rodzina miała nadzieję, że straszne miesiące szpitali się skończyły, i w końcu wszyscy będą razem, ale to był dopiero początek.\n\nWielu lekarzy, różne diagnozy....\n\nAle najgorsza diagnoza brzmiała po 5 miesiącach: \"Tu widzę pierwsze oznaki porażenia mózgowego\" - powiedział lekarz.\n\nRodzice mieli nadzieję, że diagnoza była błędna, ale po 6 miesiącach ją potwierdzili. Rodzina natychmiast zaczęła leczyć chłopca. Dawid skończył 4 kursy terapii Bobatha i Vojty, ma codzienne zajęcia w domu ze specjalistą rehabilitacji, na przemian z ośrodkami rehabilitacyjnymi. Również rodzicy się zwrócili do pomocy logopedy i psychologa, zajęcia odbywają się kilka razy w tygodniu, dodatkowo jest basen i hipoterapia. W każdej wolnej minucie między zajęciami rodzice zajmują się z Dawidem na własną rękę.\n\nW trakcie leczenia odwiedzili wiele ośrodków rehabilitacji, ale tylko jeden daje Dawidowi najlepsze wyniki - Centrum intensywnej terapii \"Olinek\" w Warszawie.\n\nZa każdym razem, nasz rozumny chłopczyk wychodzi stamtąd z maksymalną poprawą, po ostatniej podróży widziałam jego pierwsze wolne kroki nieskrępowane spastycznością i bardziej skoncentrowanymi i celowymi ruchami rąk\" – mówi mama Dawida.\n\nAby uzyskać dobry wynik, potrzebujemy co najmniej 3-4 kursów rehabilitacji rocznie. W tym roku Dawid był już dwukrotnie w Ośrodku Intensywnej Terapii \"Olinek\". Rodzina planuje trzeci wyjazd w grudniu, ale rodzice nie są w stanie samodzielnie opłacić tej rehabilitacji, więc zwracają się z prośbą o pomoc do każdego.\n\nDawid jest bardzo silnym i inteligentnym chłopcem, wielu lekarzy mówią o dobrych perspektywach leczenia. Rodzina Dawida prosi o pomoc w rozpaczliwej walce o zdrowie swojego syna, bo sami już sobie nie radzą!",
+		"totalGoal":13000,
+		"href":"DawidSukhomlyn",
+		"isFinished":true
 	}
 ]

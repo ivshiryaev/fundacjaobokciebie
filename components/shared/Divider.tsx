@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const classNames = ['w-full h-full fill-primary drop-shadow-md','w-full h-full fill-primary drop-shadow-md scale-y-[-1]']
 
-function Divider({inverted}:{inverted: boolean}) {
+function Divider({inverted}:{inverted?: boolean}) {
 	return (
 		<svg 
 			className={`w-full h-full fill-primary drop-shadow-md translate-y-[-1px] ${inverted &&  'scale-y-[-1] !translate-y-[1px]'}`} 

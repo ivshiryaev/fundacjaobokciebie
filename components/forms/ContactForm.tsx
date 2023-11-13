@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { FormValidation, ContactFormSchema } from '@/lib/validations/ContactForm'
 
-import { submitContactForm } from '@/lib/actions/formSpree.actions.ts'
+import { submitContactForm } from '@/lib/actions/formSpree.actions'
 
 function ContactForm() {
 	const [isSubmitSuccesfull, setIsSubmitSuccesfull] = useState(false)
@@ -98,7 +98,6 @@ function ContactForm() {
 					outline outline-1 outline-primary
 				'
 				placeholder='Opis...'
-				type="text"
 				{...register('opis')}
 			/>
 			{errors?.opis?.message && <p className='text-sm'>{errors.opis?.message}</p>}

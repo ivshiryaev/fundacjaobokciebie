@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-function IconBaloon({baloons = 1, className} : {baloons: number, className: string}) {
+function IconBaloon({baloons = 1, className} : {baloons?: number, className?: string}) {
 	return (
 		<div 
 			// className='

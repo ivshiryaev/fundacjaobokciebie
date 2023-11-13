@@ -1,8 +1,7 @@
+// @ts-nocheck
 "use server"
 
-import { Stripe } from '@/lib/stripe.ts'
-
-
+import { Stripe } from '@/lib/stripe'
 
 export async function getPaidCheckoutSessions(
 	{
@@ -14,9 +13,6 @@ export async function getPaidCheckoutSessions(
 	try{
 		const stripe = await Stripe()
 
-		// Start measuring time
-	    const startTime = performance.now();
-
 		const checkoutSessions = await stripe.checkout.sessions.list({
 			limit: 100,
 		});
@@ -25,33 +21,26 @@ export async function getPaidCheckoutSessions(
 			return (checkoutSession.payment_status === 'paid')
 		})
 
-		// Stop measuring time
-	    const endTime = performance.now();
-
-	    console.log(`getPaidCheckoutSessions: ${endTime - startTime}`)
-
 		return paidCheckoutSessions.slice(0,limit)
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
+	return []
 }
 
 export async function getPaidCheckoutSessionsByPaymentLinkId(
 	{
 		paymentLinkId,
-		limit
 	} : 
 	{
 		paymentLinkId: string,
-		limit?: number,
 	}){
 	try{
 		const stripe = await Stripe()
 
-		const rawCheckoutSessions = []
+		if(!paymentLinkId) return { paidCheckoutSessions: [], totalDonatedValue: 0}
 
-		// Start measuring time
-		const startTime = performance.now();
+		const rawCheckoutSessions = []
 
 		//Initial get checkout sessions
 		let checkoutSessions = await stripe.checkout.sessions.list({
@@ -77,21 +66,19 @@ export async function getPaidCheckoutSessionsByPaymentLinkId(
 		}
 
 		//Filter them by payment_status === 'paid'
-		const paidCheckoutSessions = 
+		const paidCheckoutSessions: any[] = 
 			rawCheckoutSessions.filter(checkoutSession => (
 				checkoutSession.payment_status === 'paid'
 			))
 
-		// Stop measuring time
-	    const endTime = performance.now();
-
 	    //Sum up the quantity
-	    const totalDonatedValue = paidCheckoutSessions.reduce((accumulator, item) => accumulator + item.amount_total, 0)
+	    const totalDonatedValue: number = paidCheckoutSessions.reduce((accumulator, item) => accumulator + item.amount_total, 0)
 
-		return { paidCheckoutSessions, totalDonatedValue}
+		return { paidCheckoutSessions, totalDonatedValue }
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
+	return { paidCheckoutSessions: [], totalDonatedValue: 0}
 }
 
 
@@ -104,7 +91,7 @@ export async function listAllEventsByType(types: string[]){
 		});
 		return events
 	} catch(error){
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 
@@ -114,7 +101,7 @@ export async function retrieveBalance(){
 		const balance = await stripe.balance.retrieve();
 		return balance
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 
@@ -124,7 +111,7 @@ export async function getProduct({productId} : {productId: string}){
 		const product = await stripe.products.retrieve(productId);
 		return product
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 
@@ -136,7 +123,7 @@ export async function listAllCharges(){
 		});
 		return charges
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 
@@ -165,7 +152,7 @@ export async function getTotalDonatedValueByMetadata({metadata}:{metadata: strin
 
 		return total
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 
@@ -198,7 +185,7 @@ export async function getPaidCheckoutSessionsByMetadata(
 
 		return checkoutSessions
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
 }
 

@@ -3,7 +3,7 @@ import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 import WolontariatForm from '@/components/forms/WolontariatForm'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function NowaZbiorka() {
 	return (

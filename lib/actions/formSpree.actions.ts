@@ -1,8 +1,8 @@
 'use server'
 
-const contactFormUrl = process.env.FORMSPREE_CONTACT_FORM_URL
-const nowaZbiorkaUrl = process.env.FORMSPREE_NOWA_ZBIORKA_FORM_URL
-const wolontariatFormUrl = process.env.FORMSPREE_WOLONTARIAT_FORM_URL
+const contactFormUrl = process.env.FORMSPREE_CONTACT_FORM_URL ?? ''
+const nowaZbiorkaUrl = process.env.FORMSPREE_NOWA_ZBIORKA_FORM_URL ?? ''
+const wolontariatFormUrl = process.env.FORMSPREE_WOLONTARIAT_FORM_URL ?? ''
 
 
 export async function submitContactForm(data: any){
@@ -21,10 +21,10 @@ export async function submitContactForm(data: any){
 			console.error(`Can't submit the form, status code: ${response.status}`)
 			return false
 		}
-
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
+	return false
 }
 
 export async function submitNowaZbiorkaForm(data: any){
@@ -43,10 +43,10 @@ export async function submitNowaZbiorkaForm(data: any){
 			console.error(`Can't submit the form, status code: ${response.status}`)
 			return false
 		}
-
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
+	return false
 }
 
 export async function submitWolontariatForm(data: any){
@@ -65,8 +65,8 @@ export async function submitWolontariatForm(data: any){
 			console.error(`Can't submit the form, status code: ${response.status}`)
 			return false
 		}
-
 	} catch(error) {
-		console.error(error.message)
+		console.error((error as Error).message)
 	}
+	return false
 }

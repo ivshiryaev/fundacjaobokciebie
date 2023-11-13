@@ -10,8 +10,8 @@ function Donation({
 } : {
 	custom_fields?: any,
 	displayInRow?: boolean,
-	date?: string,
-	value?: string,
+	date: number,
+	value: number,
 	className?: string,
 }) {
 
@@ -20,8 +20,8 @@ function Donation({
 
 	//If both of the custom fields have type 'text' 
 	if(custom_fields[0]?.type === 'text' && custom_fields[1]?.type === 'text'){
-		name = custom_fields[0].text.value
-		comment = custom_fields[1].text.value
+		name = custom_fields[0].text.value || 'Anonimowa wpłata'
+		comment = custom_fields[1].text.value || ''
 	} else if(custom_fields[0]?.type === 'text'){
 		comment = custom_fields[0].text.value
 	}
@@ -31,11 +31,11 @@ function Donation({
 
 	if(displayInRow){
 		return(
-			<article className='flex flex-col border-b'>
+			<article className='flex flex-col w-full h-full'>
 				<div className='p-[1.5rem] flex flex-col gap-[1rem]'>
 					<div className='flex gap-[1rem] items-center'>
 						<IconBaloon
-							baloons={countBaloons(convertedValue)}
+							baloons={countBaloons(Number(convertedValue))}
 						/>
 						<div className='flex flex-col grow'>
 							<p className='text-[0.875rem]'>{name ? name : 'Anonimowa wpłata'}</p>
@@ -54,7 +54,7 @@ function Donation({
 	return (
 		<article 
 			className={`
-				w-full
+				w-full h-full
 				outline outline-1
 				flex
 				flex-col justify-center items-center
@@ -68,7 +68,7 @@ function Donation({
 			`}
 		>
 			<IconBaloon
-				baloons={countBaloons(convertedValue)}
+				baloons={countBaloons(Number(convertedValue))}
 			/>
 			<div className='flex flex-col justify-center items-center'>
 				<p className='text-[0.875rem]'>

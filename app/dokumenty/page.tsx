@@ -2,7 +2,7 @@ import Button from '@/components/button/Button'
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 
-import data from '@/constants/data'
+import data from '@/constants/data.json'
 
 function Dokumenty() {
 	return (
@@ -40,7 +40,7 @@ function Dokumenty() {
 			</div>
 			<div className='grid grid-flow-row lg:grid-flow-col gap-[1rem] w-full'>
 				{data.documents.files.map((item,idx) => (
-					<article className='p-[1.5rem] rounded-[2rem] outline outline-1 flex flex-col gap-[0.5rem]'>
+					<article key={idx} className='p-[1.5rem] rounded-[2rem] outline outline-1 flex flex-col gap-[0.5rem]'>
 						<p className='font-semibold text-[1.25rem]'>{item.title}</p>
 						<div className='flex gap-[1rem]'>
 							<Button className='grow'>Pobierz</Button>

@@ -3,35 +3,52 @@ import Button from '@/components/button/Button'
 import Link from 'next/link'
 
 import { centsToValue } from '@/lib/utils'
-
 import { countPercentage } from '@/lib/utils'
 
-import ZbiorkiJSON from '@/constants/Zbiorki'
+import ZbiorkiJSON from '@/constants/Zbiorki.json'
+import Slide from '@/components/animations/Slide'
 
-import { getPaidCheckoutSessionsByPaymentLinkId } from '@/lib/actions/stripe.actions.ts'
+import { getPaidCheckoutSessionsByPaymentLinkId } from '@/lib/actions/stripe.actions'
 
+interface dataInterface {
+	photos:{ name: string, href: string }[],
+	name?: string,
+	description?: string,
+	age?: number,
+	opisChoroby?: string,
+	totalGoal: number,
+	href?: string,
+	paymentLinkId?: string,
+	paymentLinkUrl?: string,
+	zbiorkaId?: string,
+	isFinished?: boolean,
+}
 
 //TODO : change props naming
 //TODO: rename alt props of the images
-async function Zbiorka({id}:{id: string}) {
+async function Zbiorka({href}:{href: string}) {
 
 	// Get data about the zbiorka
-	const data = ZbiorkiJSON.find(zbiorka => zbiorka.href === id)
+	const data: dataInterface | undefined = ZbiorkiJSON.find(zbiorka => zbiorka.href === href)
 	if(!data) return null
 
-	//Get all the donations
+	// PRODUCTION
+	// Get all the donations
 	const { paidCheckoutSessions: donations, totalDonatedValue } = await getPaidCheckoutSessionsByPaymentLinkId({
 		paymentLinkId: data.paymentLinkId || null,
 	})
 
+	// TESTING
+	// const totalDonatedValue = 12077
+
 	//Get total donated value
-	const totalFundraised = centsToValue({valueInCents: totalDonatedValue})
-	const fundraisedPercentage = countPercentage(totalFundraised, data.totalGoal).toString()
+	const convertedTotalDonatedValue = centsToValue({valueInCents: totalDonatedValue})
+	const fundraisedPercentage = countPercentage(Number(convertedTotalDonatedValue), data.totalGoal)
 
 	return (
 			<article
 				className='
-					w-full
+					w-full h-full
 					flex flex-col
 					justify-center items-center
 					rounded-[2rem]
@@ -44,9 +61,11 @@ async function Zbiorka({id}:{id: string}) {
 				<Link
 					href={`zbiorka/${data.href}`}
 					className='
+						relative
 						w-full
 						relative
 						h-[300px]
+						overflow-hidden
 					'
 				>
 					<Image
@@ -55,6 +74,16 @@ async function Zbiorka({id}:{id: string}) {
 						fill
 						alt='MariaKlausiuk'
 					/>
+					{data.isFinished &&
+						<Slide 
+							value={50}
+							horizontalDirection='left'
+						>
+							<div className='top-3 right-3 text-success font-semibold absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
+								Zbiórka zakończona
+							</div>
+						</Slide>
+					}
 				</Link>
 				<div 
 					className='
@@ -69,15 +98,15 @@ async function Zbiorka({id}:{id: string}) {
 					</div>
 					<div className='flex flex-col gap-[0.5rem]'>
 						<p className='text-[0.750rem] text-myGray2'>
-							Uzbieraliśmy: {totalFundraised} zł
+							Uzbieraliśmy: {data.isFinished ? data.totalGoal : convertedTotalDonatedValue} zł
 						</p>
 						<div className='h-[0.25rem] bg-myGray rounded-full overflow-hidden'>
 							<div 
 								style={{
-									width:`${fundraisedPercentage}%`
+									width: data.isFinished ? '100%' : `${fundraisedPercentage}%`,
 								}}
 								className={`
-									bg-primary h-full
+									${data.isFinished ? 'bg-success' : 'bg-primary'} h-full
 								`}
 							>
 							</div>
@@ -87,9 +116,15 @@ async function Zbiorka({id}:{id: string}) {
 						</p>
 					</div>
 					<Link href={`zbiorka/${data.href}`}>
+					{data.isFinished ?
+						<Button className='w-full bg-success'>Do zbiórki</Button>
+						:
 						<Button className='w-full'>Do zbiórki</Button>
+					}
 					</Link>
-					<p className='text-myGray2 text-[0.75rem] text-center'>Do celu: {data.totalGoal - totalFundraised} zł</p>
+					<p className='text-myGray2 text-[0.75rem] text-center'>
+						Do celu: {data.totalGoal - (Number(convertedTotalDonatedValue))} zł
+					</p>
 				</div>
 			</article>
 	)

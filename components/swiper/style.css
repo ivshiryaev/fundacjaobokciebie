@@ -1,0 +1,8 @@
+.swiper-container{
+	border: 2px solid black;
+}
+
+.swiper-button-prev,
+.swiper-button-next{
+	color: white;
+}

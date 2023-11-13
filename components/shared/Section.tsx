@@ -8,6 +8,7 @@ function Section(
 		<section 
 			id={id}
 			className={`
+				overflow-hidden
 				w-full
 				flex flex-col gap-[1rem]
 				justify-center items-center
