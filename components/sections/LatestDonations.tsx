@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 import Donation from '@/components/shared/Donation'

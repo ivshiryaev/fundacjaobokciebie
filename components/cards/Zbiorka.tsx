@@ -35,7 +35,7 @@ async function Zbiorka({href}:{href: string}) {
 	// PRODUCTION
 	// Get all the donations
 	const { paidCheckoutSessions: donations, totalDonatedValue } = await getPaidCheckoutSessionsByPaymentLinkId({
-		paymentLinkId: data.paymentLinkId || null,
+		paymentLinkId: data.paymentLinkId || '',
 	})
 
 	// TESTING
