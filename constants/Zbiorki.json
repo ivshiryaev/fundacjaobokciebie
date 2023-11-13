@@ -1,0 +1,24 @@
+[
+	{
+		"name":"Marysia Klausiuk",
+		"description":"SMA",
+		"city":"Warszawa",
+		"age":7,
+		"opisChoroby":"Jak Marysia się urodziła, na początku wszystko było dobrze. W wieku 1 roku i 6 miesięcy zauważyliśmy, że zmienił się chód córki, pojawiło się płaskostopie...\n\nPóźniej zaczęła często padać. Szukając właściwej diagnozy, straciliśmy 2,5 roku. Natychmiast podjęto decyzję o leczeniu w Warszawie. W chwili otrzymania leku Marysia już nie mogła nawet samodzielnie stanąć\n\nAle wraz z początkiem leczenia siły Marysi zaczęły stopniowo wracać. Na nowo uczy się chodzić.\n\nDo tej pory dostała 9 zastrzyków leku Spinrazy.Marysia już chodzi w ortezach trzymając się za rękę lub w chodziku.Może trochę stać bez ortezy i zrobić kilka kroków. Za każdym razem wypowiada jedno życzenie: „Chcę chodzić”.",
+		"totalGoal":12500,
+		"href":"MarysiaKlausiuk",
+		"paymentLinkId":"plink_1Mf6MqJQaQayrDIXPPig8e5j",
+		"paymentLinkUrl":"https://donate.stripe.com/28obKX1PdfuidTq6or",
+		"zbiorkaId":"MarysiaKlausiuk"
+	},
+	{
+		"name":"Ewa Klausiuk",
+		"description":"MPD",
+		"city":"Gdańsk",
+		"age":4,
+		"totalGoal":"13000",
+		"href":"EwaKlausiuk",
+		"paymentLinkId":"plink_1MkyYWJQaQayrDIXl61k6bHF",
+		"paymentLinkUrl":"https://donate.stripe.com/dR6cP1bpNbe28z6eUY"
+	}
+]
