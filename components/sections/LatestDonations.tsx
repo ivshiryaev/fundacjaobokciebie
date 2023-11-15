@@ -3,126 +3,31 @@
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 import Donation from '@/components/shared/Donation'
-
-import { getPaidCheckoutSessions } from '@/lib/actions/stripe.actions'
-
 import Slide from '@/components/animations/Slide'
 
-import data from '@/constants/data.json'
+import { getDonations } from '@/lib/actions/donation.actions'
+
+import constants from '@/constants/data.json'
 
 async function LatestDonations() {
-
-	//PRODUCTION
-	const donations = await getPaidCheckoutSessions({limit: 9})
-
-	//TESTING
-	// const donations = [
-	// 	{
-	// 		amount_total:2000,
-	// 		created:1699888196,
-	// 		custom_fields:[
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:'Valera'
-	// 				}
-	// 			},
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:'Powodzenia życzę !'
-	// 				}
-	// 			}
-	// 		]
-	// 	},
-	// 	{
-	// 		amount_total:5000,
-	// 		created:1699888196,
-	// 		custom_fields:[
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:'Piotr Barczyński'
-	// 				}
-	// 			},
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:''
-	// 				}
-	// 			}
-	// 		]
-	// 	},
-	// 	{
-	// 		amount_total:10000,
-	// 		created:1699888196,
-	// 		custom_fields:[
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:'Paweł'
-	// 				}
-	// 			},
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:'Jak najwięcej zdrówka !'
-	// 				}
-	// 			}
-	// 		]
-	// 	},
-	// 	{
-	// 		amount_total:2000,
-	// 		created:1699888196,
-	// 		custom_fields:[
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:''
-	// 				}
-	// 			},
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:''
-	// 				}
-	// 			}
-	// 		]
-	// 	},
-	// 	{
-	// 		amount_total:3000,
-	// 		created:1699888196,
-	// 		custom_fields:[
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:''
-	// 				}
-	// 			},
-	// 			{
-	// 				type:'text',
-	// 				text:{
-	// 					value:''
-	// 				}
-	// 			}
-	// 		]
-	// 	}
-	// ]
+	const response = await getDonations()
+	const donations = JSON.parse(response)
+	if(!donations) return null
 
 	return (
 		<Section
 			className='
 				container mx-auto
-				text-primary
 			'
 		>
 			<h3 
 				className={`
+					text-primary
 					${snap.className}
 					text-[2rem]
 				`}
 			>
-				{data.donations.title}
+				{constants.donations.title}
 			</h3>
 			<div 
 				className='
@@ -143,9 +48,10 @@ async function LatestDonations() {
 						className='w-full'
 					>
 						<Donation
-							custom_fields={item?.custom_fields}
-							date={item.created}
-							value={item.amount_total}
+							name={item.name}
+							comment={item.comment}
+							date={item.date}
+							amount={item.amount}
 						/>
 					</Slide>
 				))}

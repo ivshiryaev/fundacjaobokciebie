@@ -1,33 +1,24 @@
 import IconBaloon from '@/components/shared/IconBaloon'
-import { centsToValue, countBaloons, convertUnixTimeFormatToDDMMYYYY } from '@/lib/utils'
+
+import { countBaloons, centsToValue } from '@/lib/utils'
 
 function Donation({
-	custom_fields = [],
-	displayInRow,
+	name,
+	comment,
+	amount,
 	date,
-	value,
-	className,
+	displayInRow = false,
+	className
 } : {
-	custom_fields?: any,
-	displayInRow?: boolean,
-	date: number,
-	value: number,
-	className?: string,
+	name: string,
+	comment: string,
+	amount: number,
+	date: string,
+	displayInRow: boolean,
+	className?: string
 }) {
 
-	let name = "Anonimowa wpłata"
-	let comment = ''
-
-	//If both of the custom fields have type 'text' 
-	if(custom_fields[0]?.type === 'text' && custom_fields[1]?.type === 'text'){
-		name = custom_fields[0].text.value || 'Anonimowa wpłata'
-		comment = custom_fields[1].text.value || ''
-	} else if(custom_fields[0]?.type === 'text'){
-		comment = custom_fields[0].text.value
-	}
-
-	const convertedValue = centsToValue({valueInCents: value})
-	const convertedDate = convertUnixTimeFormatToDDMMYYYY(date)
+	const convertedValue = centsToValue(amount)
 
 	if(displayInRow){
 		return(
@@ -38,8 +29,8 @@ function Donation({
 							baloons={countBaloons(Number(convertedValue))}
 						/>
 						<div className='flex flex-col grow'>
-							<p className='text-[0.875rem]'>{name ? name : 'Anonimowa wpłata'}</p>
-							<p className='text-[0.750rem] text-myGray2'>{convertedDate}</p>
+							<p className='text-[0.875rem]'>{name}</p>
+							<p className='text-[0.750rem] text-myGray2'>{date}</p>
 						</div>
 						<div className='flex justify-end items-center'>
 							<p className='text-[1.5rem] w-max font-bold text-primary'>{convertedValue} zł</p>
@@ -55,7 +46,7 @@ function Donation({
 		<article 
 			className={`
 				w-full h-full
-				outline outline-1
+				outline outline-1 outline-primary
 				flex
 				flex-col justify-center items-center
 				gap-[0.5rem]
@@ -71,15 +62,15 @@ function Donation({
 				baloons={countBaloons(Number(convertedValue))}
 			/>
 			<div className='flex flex-col justify-center items-center'>
-				<p className='text-[0.875rem]'>
+				<p className='text-[0.875rem] text-primary'>
 					{name}
 				</p>
 				<p className='text-[0.750rem] text-myGray2'>
-					{convertedDate}
+					{date}
 				</p>
 			</div>
 			<div className='flex flex-col justify-center items-center'>
-				<p className='font-bold text-[1.5rem]'>
+				<p className='font-bold text-[1.5rem] text-primary'>
 					{convertedValue} zł
 				</p>
 				{comment && 

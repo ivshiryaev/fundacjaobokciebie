@@ -2,7 +2,7 @@ import React from 'react'
 
 function Section(
 	{children, className, isPage, id} : 
-	{children: React.ReactNode, className: string, isPage?: boolean, id?: string}
+	{children?: React.ReactNode, className?: string, isPage?: boolean, id?: string}
 	) {
 	return (
 		<section 

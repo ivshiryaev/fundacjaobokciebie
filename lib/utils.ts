@@ -3,9 +3,9 @@ const moment = require('moment')
 /**
  * Converts a value in cents to a value in such format: 10.00
  * @param {number} valueInCents - The value in cents to be converted.
- * @returns {string} - The converted value in the 10.00 format
+ * @returns {number} - The converted value in the 10.00 format
  */
-export function centsToValue({valueInCents}:{valueInCents: number}){
+export function centsToValue(valueInCents: number){
 	const input = valueInCents;
 
 	const convertedValue = (input / 100);

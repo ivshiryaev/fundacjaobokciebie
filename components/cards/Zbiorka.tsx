@@ -5,45 +5,17 @@ import Link from 'next/link'
 import { centsToValue } from '@/lib/utils'
 import { countPercentage } from '@/lib/utils'
 
-import ZbiorkiJSON from '@/constants/Zbiorki.json'
-import Slide from '@/components/animations/Slide'
+import { getZbiorkaById } from '@/lib/actions/zbiorka.actions'
 
-import { getPaidCheckoutSessionsByPaymentLinkId } from '@/lib/actions/stripe.actions'
-
-interface dataInterface {
-	photos:{ name: string, href: string }[],
-	name?: string,
-	description?: string,
-	age?: number,
-	opisChoroby?: string,
-	totalGoal: number,
-	href?: string,
-	paymentLinkId?: string,
-	paymentLinkUrl?: string,
-	zbiorkaId?: string,
-	isFinished?: boolean,
-}
-
-//TODO : change props naming
 //TODO: rename alt props of the images
-async function Zbiorka({href}:{href: string}) {
-
-	// Get data about the zbiorka
-	const data: dataInterface | undefined = ZbiorkiJSON.find(zbiorka => zbiorka.href === href)
+async function Zbiorka({id}:{id: string}) {
+	const response = await getZbiorkaById(id)
+	const data = JSON.parse(response)
 	if(!data) return null
 
-	// PRODUCTION
-	// Get all the donations
-	const { paidCheckoutSessions: donations, totalDonatedValue } = await getPaidCheckoutSessionsByPaymentLinkId({
-		paymentLinkId: data.paymentLinkId || '',
-	})
-
-	// TESTING
-	// const totalDonatedValue = 12077
-
-	//Get total donated value
-	const convertedTotalDonatedValue = centsToValue({valueInCents: totalDonatedValue})
-	const fundraisedPercentage = countPercentage(Number(convertedTotalDonatedValue), data.totalGoal)
+	const totalDonatedValue = centsToValue(data.totalDonated)
+	const fundraisedPercentage = countPercentage(Number(totalDonatedValue), data.totalGoal)
+	const toGoalValue = data.totalGoal - Number(totalDonatedValue)
 
 	return (
 			<article
@@ -70,19 +42,14 @@ async function Zbiorka({href}:{href: string}) {
 				>
 					<Image
 						className='object-cover pointer-events-none'
-						src={`/images/${data.href}.jpg`}
+						src={`/images/zbiorki/${data.href}/1.jpg`}
+						alt={data.href}
 						fill
-						alt='MariaKlausiuk'
 					/>
 					{data.isFinished &&
-						<Slide 
-							value={50}
-							horizontalDirection='left'
-						>
-							<div className='top-3 right-3 text-success font-semibold absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
-								Zbiórka zakończona
-							</div>
-						</Slide>
+						<div className='top-3 right-3 text-success font-semibold absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
+							Zbiórka zakończona
+						</div>
 					}
 				</Link>
 				<div 
@@ -98,7 +65,7 @@ async function Zbiorka({href}:{href: string}) {
 					</div>
 					<div className='flex flex-col gap-[0.5rem]'>
 						<p className='text-[0.750rem] text-myGray2'>
-							Uzbieraliśmy: {data.isFinished ? data.totalGoal : convertedTotalDonatedValue} zł
+							Uzbieraliśmy: {data.isFinished ? data.totalGoal : totalDonatedValue} zł
 						</p>
 						<div className='h-[0.25rem] bg-myGray rounded-full overflow-hidden'>
 							<div 
@@ -123,7 +90,7 @@ async function Zbiorka({href}:{href: string}) {
 					}
 					</Link>
 					<p className='text-myGray2 text-[0.75rem] text-center'>
-						Do celu: {data.totalGoal - (Number(convertedTotalDonatedValue))} zł
+						Do celu: {toGoalValue} zł
 					</p>
 				</div>
 			</article>

@@ -3,25 +3,36 @@
 
 import { Stripe } from '@/lib/stripe'
 
-export async function getPaidCheckoutSessions(
-	{
-		limit
-	} : 
-	{
-		limit: number,
-	}){
+export async function getPaidCheckoutSessions(){
 	try{
 		const stripe = await Stripe()
 
-		const checkoutSessions = await stripe.checkout.sessions.list({
+		const rawCheckoutSessions = []
+
+		let checkoutSessions = await stripe.checkout.sessions.list({
 			limit: 100,
 		});
 
-		const paidCheckoutSessions = checkoutSessions.data.filter(checkoutSession => {
+		checkoutSessions.data.map(item => rawCheckoutSessions.push(item))
+
+		while(checkoutSessions.has_more){
+			console.log('Checkout sessions has more')
+			checkoutSessions = await stripe.checkout.sessions.list({
+				limit: 100,
+				starting_after: checkoutSessions.data[checkoutSessions.data.length-1].id
+			});
+
+			checkoutSessions.data.map(item => rawCheckoutSessions.push(item))
+		}
+
+		console.log('I am going to filter them')
+
+		//Filter them by status paid
+		const paidCheckoutSessions = rawCheckoutSessions.filter(checkoutSession => {
 			return (checkoutSession.payment_status === 'paid')
 		})
 
-		return paidCheckoutSessions.slice(0,limit)
+		return paidCheckoutSessions
 	} catch(error) {
 		console.error((error as Error).message)
 	}
@@ -30,66 +41,108 @@ export async function getPaidCheckoutSessions(
 
 export async function getPaidCheckoutSessionsByPaymentLinkId(
 	{
+		donations,
 		paymentLinkId,
+		starting_after,
+		limit = 6,
 	} : 
 	{
+		donations?: any[],
 		paymentLinkId: string,
+		starting_after?: string,
+		limit?: number,
 	}){
 	try{
 		const stripe = await Stripe()
 
-		if(!paymentLinkId) return { paidCheckoutSessions: [], totalDonatedValue: 0}
+		let checkoutSessions = []
 
-		const rawCheckoutSessions = []
-
-		//Initial get checkout sessions
-		let checkoutSessions = await stripe.checkout.sessions.list({
-			limit: 100,
-			payment_link: paymentLinkId,
-		})
-
-		//Store all checkout sessions in the array 
-		checkoutSessions.data.map(item => (
-			rawCheckoutSessions.push(item)
-		))
-
-		//Loop thru all the checkout sessions
-		while(checkoutSessions.has_more){
+		if(donations){
+			//Get donations starting_after last item in donations array
 			checkoutSessions = await stripe.checkout.sessions.list({
-				limit:100,
+				limit: 50,
 				payment_link: paymentLinkId,
-				starting_after: checkoutSessions.data[checkoutSessions.data.length-1].id
+				starting_after: donations.data[donations.data.length - 1].id,
 			})
-			checkoutSessions.data.map(item => (
-				rawCheckoutSessions.push(item)
-			))
+		} else {
+			//Get first 100 donations if no donations array is coming as a prop
+			checkoutSessions = await stripe.checkout.sessions.list({
+				limit: 50,
+				payment_link: paymentLinkId,
+			})
 		}
 
-		//Filter them by payment_status === 'paid'
-		const paidCheckoutSessions: any[] = 
-			rawCheckoutSessions.filter(checkoutSession => (
-				checkoutSession.payment_status === 'paid'
-			))
+		//Fitler them by status === 'paid'
+		checkoutSessions.data = checkoutSessions.data.filter(checkoutSession => {
+			return (checkoutSession.payment_status === 'paid')
+		})
 
-	    //Sum up the quantity
-	    const totalDonatedValue: number = paidCheckoutSessions.reduce((accumulator, item) => accumulator + item.amount_total, 0)
+		//Slice them by limit
+		checkoutSessions.data = checkoutSessions.data.slice(0, limit)
 
-		return { paidCheckoutSessions, totalDonatedValue }
+		// check if there is more
+		let checkHasMore = await stripe.checkout.sessions.list({
+			limit: 50,
+			payment_link: paymentLinkId,
+			starting_after: checkoutSessions.data[checkoutSessions.data.length - 1].id,
+		})
+
+		// Check if they are paid
+		checkHasMore.data = checkHasMore.data.filter(checkoutSession => {
+			return (checkoutSession.payment_status === 'paid')
+		})
+
+		// If there are paid, set to true
+		if(checkHasMore.data.length){
+			checkoutSessions.has_more = true
+		} else {
+			checkoutSessions.has_more = false
+		}
+
+		return JSON.stringify(checkoutSessions)
 	} catch(error) {
 		console.error((error as Error).message)
 	}
 	return { paidCheckoutSessions: [], totalDonatedValue: 0}
 }
 
+export async function getCheckoutSessions(){
+	const stripe = await Stripe()
+
+	const sessions = await stripe.checkout.sessions.list({
+		limit: 10,
+	});
+
+	return sessions
+}
+
+
 
 export async function listAllEventsByType(types: string[]){
 	try{
 		const stripe = await Stripe()
-		const events = await stripe.events.list({
-		  limit: 3,
-		  types: ['checkout.session.completed']
-		});
-		return events
+
+
+		const rawCharges = []
+
+		let response = await stripe.paymentIntents.list({
+			limit: 100,
+		})
+
+		response.data.map(item => rawCharges.push(item))
+
+		while(response.has_more){
+			response = await stripe.paymentIntents.list({
+				limit: 100,
+				starting_after: response.data[response.data.length-1].id
+			})
+
+			response.data.map(item => rawCharges.push(item))
+		}
+
+		const data = JSON.stringify(rawCharges)
+
+		return data
 	} catch(error){
 		console.error((error as Error).message)
 	}

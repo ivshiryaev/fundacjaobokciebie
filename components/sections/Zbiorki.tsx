@@ -4,13 +4,17 @@ import { snap } from '@/app/fonts'
 import Zbiorka from '@/components/cards/Zbiorka'
 import Button from '@/components/button/Button'
 
-import data from '@/constants/data.json'
-import ZbiorkiJSON from '@/constants/Zbiorki.json'
+import constants from '@/constants/data.json'
+import { getZbiorki } from '@/lib/actions/zbiorka.actions'
 
 import Slide from '@/components/animations/Slide'
 
 //If preview===true shows "Prezjdż do pełnej listy zbiórek" button
-function Zbiorki({preview = false}:{preview?: boolean}) {
+async function Zbiorki({preview = false}:{preview?: boolean}) {
+	const response = await getZbiorki()
+	const data = JSON.parse(response)
+	if(!data) return null
+
 	const previewDisplayCount = 3
 
 	return (
@@ -26,11 +30,11 @@ function Zbiorki({preview = false}:{preview?: boolean}) {
 					text-[2rem]
 				`}
 			>
-				{data.zbiorki.title}
+				{constants.zbiorki.title}
 			</h4>
 			<div 
 				className='
-					w-full
+					w-full h-full
 					grid
 					grid-cols-1 
 					sm:grid-cols-2
@@ -41,23 +45,23 @@ function Zbiorki({preview = false}:{preview?: boolean}) {
 				'
 			>
 				{preview ?
-					ZbiorkiJSON.slice(0,previewDisplayCount).map((zbiorka,idx) => (
+					data.slice(0,previewDisplayCount).map((zbiorka: any,idx: any) => (
 					<Slide 
 						verticalDirection='up'
 						key={idx}
 						className='w-full h-full'
 					>
-						<Zbiorka href={zbiorka.href}/>
+						<Zbiorka id={zbiorka._id}/>
 					</Slide>
 					))
 					:
-					ZbiorkiJSON.map((zbiorka,idx) => (
+					data.map((zbiorka: any,idx: any) => (
 					<Slide 
 						verticalDirection='up'
 						key={idx}
 						className='w-full h-full'
 					>
-						<Zbiorka href={zbiorka.href}/>
+						<Zbiorka id={zbiorka._id}/>
 					</Slide>
 					))
 				}

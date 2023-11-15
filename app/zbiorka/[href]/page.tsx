@@ -2,56 +2,30 @@ import Link from 'next/link'
 
 import Button from '@/components/button/Button'
 import Image from 'next/image'
-import { countPercentage } from '@/lib/utils'
 import DonationList from '@/components/shared/DonationList'
+import IconBaloon from '@/components/shared/IconBaloon'
 
 import { BsPerson, BsFilePerson } from 'react-icons/bs'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { GiStethoscope } from 'react-icons/gi'
 
-import IconBaloon from '@/components/shared/IconBaloon'
 import { centsToValue } from '@/lib/utils'
+import { countPercentage } from '@/lib/utils'
 
 import Swiper from '@/components/swiper/ImageSwiper'
-
-import ZbiorkiJSON from '@/constants/Zbiorki.json'
-
-import { getPaidCheckoutSessionsByPaymentLinkId } from '@/lib/actions/stripe.actions'
-
 import Slide from '@/components/animations/Slide'
 
-interface dataInterface {
-	photos:{ name: string, href: string }[],
-	name?: string,
-	description?: string,
-	age?: number,
-	city?: string,
-	opisChoroby?: string,
-	totalGoal: number,
-	href?: string,
-	paymentLinkId?: string,
-	paymentLinkUrl?: string,
-	zbiorkaId?: string,
-	isFinished?: boolean,
-}
+import { getZbiorkaByHref } from '@/lib/actions/zbiorka.actions'
 
-async function Zbiorka({ params } : { params: { id: string }}) {
+//TODO : SZCZEGOLY ZBIORKI IS HARDCODED
+async function Zbiorka({ params } : { params: { href: string }}) {
+	const response = await getZbiorkaByHref(params.href)
+	const data = JSON.parse(response)
+	if(!data) return 23
 
-	// Get data about the zbiorka
-	const data: dataInterface | undefined = ZbiorkiJSON.find(zbiorka => zbiorka.href === params.id)
-	if(!data) return null
-
-	//Get all the donations
-	const response = await getPaidCheckoutSessionsByPaymentLinkId({
-		paymentLinkId: data.paymentLinkId || '',
-	})
-
-	const donations = response.paidCheckoutSessions
-	const totalDonatedValue = response.totalDonatedValue
-
-	//Get total fundraised amount
-	const convertedTotalDonatedValue = centsToValue({valueInCents: totalDonatedValue})
-	const fundraisedPercentage = countPercentage(Number(convertedTotalDonatedValue), data.totalGoal)	
+	const totalDonatedValue = centsToValue(data.totalDonated)
+	const fundraisedPercentage = countPercentage(Number(totalDonatedValue), data.totalGoal)
+	const toGoalValue = data.totalGoal - Number(totalDonatedValue)
 
 	return (
 		<main
@@ -66,7 +40,7 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 		>
 			{/*Swiper with images PHONES*/}
 			<div className='lg:hidden relative w-full h-[500px]'>
-				<Swiper data={data.photos}/>
+				<Swiper photos={data.photos} alt={data.name} href={data.href}/>
 			</div>
 
 			{/*Main left container*/}
@@ -97,7 +71,7 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 								'
 							/>
 							<div className='relative flex gap-[1rem] justify-center items-center'>
-								<p className='font-bold text-[1.5rem]'>{convertedTotalDonatedValue} zł</p>
+								<p className='font-bold text-[1.5rem]'>{totalDonatedValue} zł</p>
 								<p>/</p>
 								<p>{data.totalGoal} zł</p>
 							</div>
@@ -108,14 +82,14 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 							</Button>
 						</Link>
 						<div className='flex justify-center items-center'>
-							<p className='text-myGray2 text-[0.875rem]'>Wpłat: {donations.length}</p>
+							<p className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</p>
 						</div>
 					</div>
 				</div>
 
 				{/*Swiper with images LAPTOP*/}
 				<div className='outline outline-1 outline-myGray hidden lg:flex relative h-[500px] rounded-[2rem] overflow-hidden'>
-					<Swiper data={data.photos}/>
+					<Swiper photos={data.photos} alt={data.name} href={data.href}/>
 				</div>
 
 				{/*Szczegóły zbiórki*/}
@@ -148,7 +122,7 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 							</div>
 							<div className='flex gap-[0.5rem] items-center'>
 								<GiStethoscope size={18} className='text-myGray2'/>
-								<p>{data.description}</p>
+								<p>{data.nazwaChoroby}</p>
 							</div>
 						</div>
 					</div>
@@ -161,20 +135,20 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 							<p className='text-[1.125rem] font-bold'>Opis zbiórki</p>
 						</div>
 						<div className='p-[1.5rem]'>
-							<p className='whitespace-pre-line'>{data.opisChoroby}</p>
+							<p className='whitespace-pre-wrap'>{data.opisChoroby}</p>
 						</div>
 					</div>
 				}
 
 				{/*Donations on the mobile*/}
-				<div className='lg:hidden outline outline-1 outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
-					<div className='text-white bg-primary p-[1.5rem]'>
-						<p className='text-[1.125rem] text-center font-bold'>Ostatnie Wpłaty</p>
+				{data.donations &&
+					<div className='lg:hidden outline outline-1 outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
+						<div className='text-white bg-primary p-[1.5rem]'>
+							<p className='text-[1.125rem] text-center font-bold'>Ostatnie Wpłaty</p>
+						</div>
+						<DonationList donations={data.donations}/>
 					</div>
-					{donations &&
-						<DonationList donations={donations}/>
-					}
-				</div>
+				}
 			</div>
 
 			{/*Payment section on the laptop*/}
@@ -206,7 +180,7 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 								/>
 								<div className='relative flex gap-[1rem] justify-center items-center'>
 									<p className='font-bold text-[1.5rem]'>
-										{data.isFinished ? data.totalGoal : convertedTotalDonatedValue} zł
+										{totalDonatedValue} zł
 									</p>
 									<p>/</p>
 									<p>{data.totalGoal} zł</p>
@@ -219,22 +193,20 @@ async function Zbiorka({ params } : { params: { id: string }}) {
 									Zbiórka zakończona !
 								</div>
 								:
-								<Link className='w-full' href={data.paymentLinkUrl || ''}>
-									<Button className='text-[1.25rem] w-full'>
-										Wspieram
-									</Button>
-								</Link>
-							}
-							{ donations.length>0 && 
-								<div className='flex justify-center items-center'>
-									<p className='text-myGray2 text-[0.875rem]'>Wpłat: {donations.length}</p>
-								</div>
+								<>
+									<Link className='w-full' href={data.paymentLinkUrl || ''}>
+										<Button className='text-[1.25rem] w-full'>
+											Wspieram
+										</Button>
+									</Link>
+									<div className='flex justify-center items-center'>
+										<p className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</p>
+									</div>
+								</>
 							}
 						</div>
 					</div>
-					{donations &&
-						<DonationList donations={donations}/>
-					}
+					<DonationList donations={data.donations}/>
 				</div>
 			</div>
 		</main>

@@ -11,28 +11,38 @@ import './style.css'
 
 import { Pagination, Navigation } from 'swiper/modules';
 
-function ImageSwiper({data = []}:{data: any[]}){
-  return (
-    <Swiper
-      pagination={{
-        type: 'fraction',
-      }}
-      navigation={true}
-      modules={[Pagination, Navigation]}
-      className="relative w-full h-full text-white"
-    >
-        {data.map((item,idx) => (
-            <SwiperSlide key={idx} className='relative w-full h-full'>
-                <Image
-                    className='object-cover'
-                    src={item.href}
-                    alt={item.name}
-                    fill
-                />
-            </SwiperSlide>
-        ))}
-    </Swiper>
-  )
+function ImageSwiper(
+    {
+        photos = [],
+        alt ='photo',
+        href = ''
+    }:{
+        photos: string[], 
+        alt: string,
+        href: string
+    }){
+
+    return (
+        <Swiper
+            pagination={{
+                type: 'fraction',
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="relative w-full h-full text-white"
+        >
+            {photos.map((item,idx) => (
+                <SwiperSlide key={idx} className='relative w-full h-full'>
+                    <Image
+                        className='object-cover'
+                        src={`/images/zbiorki/${href}/${item}.jpg`}
+                        alt={alt}
+                        fill
+                    />
+                </SwiperSlide>
+            ))}
+        </Swiper>
+    )
 }
 
 export default ImageSwiper
