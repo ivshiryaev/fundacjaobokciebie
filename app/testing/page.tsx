@@ -10,7 +10,9 @@ import { getZbiorki } from '@/lib/actions/zbiorka.actions'
 import Slide from '@/components/animations/Slide'
 
 //If preview===true shows "Prezjdż do pełnej listy zbiórek" button
-async function Zbiorki({preview = false}:{preview?: boolean}) {
+async function Testing() {
+	const preview = false
+
 	const response = await getZbiorki()
 	const data = JSON.parse(response)
 	if(!data) return null
@@ -170,4 +172,4 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 	)
 }
 
-export default Zbiorki
+export default Testing
