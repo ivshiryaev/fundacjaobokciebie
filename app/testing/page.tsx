@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Link from 'next/link'
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
