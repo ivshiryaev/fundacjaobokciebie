@@ -12,7 +12,7 @@ export async function getDonations(limit: number = 9){
 	try{
 		await connectToDB()
 
-		const response = await Donation.find().limit(limit)
+		const response = await Donation.find().sort({date: 'desc'}).limit(limit)
 
 		return JSON.stringify(response)
 	} catch(error) {
@@ -53,11 +53,11 @@ export async function createDonation(
 
 		console.log('new donation created')
 
-		return true
+		return newDonation
 	} catch(error) {
 		console.error((error as Error).message)
 	}
-	return false
+	return null
 }
 
 export async function testTheDonationFromStripe(){

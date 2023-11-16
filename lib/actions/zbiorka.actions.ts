@@ -48,3 +48,19 @@ export async function getZbiorkaByHref(href: string){
 	}
 	return ''
 }
+
+export async function getZbiorkaByPaymentLinkId(paymentLinkId: string){
+	try{
+		await connectToDB()
+
+		const response = await Zbiorka.findOne({ paymentLinkId: paymentLinkId }).populate({
+			path: 'donations',
+			model: Donation,
+			options: { strictPopulate: false },
+		})
+
+		return response
+	} catch(error){
+		console.error((error as Error).message)
+	}
+}

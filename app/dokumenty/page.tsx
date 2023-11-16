@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Button from '@/components/button/Button'
 import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
@@ -43,8 +44,12 @@ function Dokumenty() {
 					<article key={idx} className='p-[1.5rem] rounded-[2rem] outline outline-1 flex flex-col gap-[0.5rem]'>
 						<p className='font-semibold text-[1.25rem]'>{item.title}</p>
 						<div className='flex gap-[1rem]'>
-							<Button className='grow'>Pobierz</Button>
-							<Button className='grow' appearance='outline'>Otwórz</Button>
+							<a href={`/documents/${item.fileName}`} download className='grow'>
+								<Button className='grow w-full'>Pobierz</Button>
+							</a>
+							<Link href={`/documents/${item.fileName}`} target='_blank' className='grow'>
+								<Button className='grow w-full' appearance='outline'>Otwórz</Button>
+							</Link>
 						</div>
 					</article>
 				))}

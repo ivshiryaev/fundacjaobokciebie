@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useState, useEffect } from 'react'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -13,14 +14,16 @@ import { Pagination, Navigation } from 'swiper/modules';
 
 function ImageSwiper(
     {
-        photos = [],
+        photosCount = 0,
         alt ='photo',
         href = ''
     }:{
-        photos: string[], 
+        photosCount: number, 
         alt: string,
         href: string
     }){
+
+    const photos = new Array(photosCount).fill('')
 
     return (
         <Swiper
@@ -31,16 +34,17 @@ function ImageSwiper(
             modules={[Pagination, Navigation]}
             className="relative w-full h-full text-white"
         >
-            {photos.map((item,idx) => (
+            {photos.map((item,idx) =>(
                 <SwiperSlide key={idx} className='relative w-full h-full'>
                     <Image
                         className='object-cover'
-                        src={`/images/zbiorki/${href}/${item}.jpg`}
-                        alt={alt}
+                        src={`/images/zbiorki/${href}/${idx+1}.jpg`}
+                        alt={`${alt} ${idx+1}`}
                         fill
                     />
                 </SwiperSlide>
             ))}
+            
         </Swiper>
     )
 }

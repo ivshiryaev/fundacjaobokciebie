@@ -17,15 +17,14 @@ import Slide from '@/components/animations/Slide'
 
 import { getZbiorkaByHref } from '@/lib/actions/zbiorka.actions'
 
-//TODO : SZCZEGOLY ZBIORKI IS HARDCODED
 async function Zbiorka({ params } : { params: { href: string }}) {
 	const response = await getZbiorkaByHref(params.href)
 	const data = JSON.parse(response)
-	if(!data) return 23
+	if(!data) return null
 
 	const totalDonatedValue = centsToValue(data.totalDonated)
 	const fundraisedPercentage = countPercentage(Number(totalDonatedValue), data.totalGoal)
-	const toGoalValue = data.totalGoal - Number(totalDonatedValue)
+	const toGoalValue = (data.totalGoal - Number(totalDonatedValue)).toFixed()
 
 	return (
 		<main
@@ -40,7 +39,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 		>
 			{/*Swiper with images PHONES*/}
 			<div className='lg:hidden relative w-full h-[500px]'>
-				<Swiper photos={data.photos} alt={data.name} href={data.href}/>
+				<Swiper photosCount={data.photosCount} alt={data.name} href={data.href}/>
 			</div>
 
 			{/*Main left container*/}
@@ -89,7 +88,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 
 				{/*Swiper with images LAPTOP*/}
 				<div className='outline outline-1 outline-myGray hidden lg:flex relative h-[500px] rounded-[2rem] overflow-hidden'>
-					<Swiper photos={data.photos} alt={data.name} href={data.href}/>
+					<Swiper photosCount={data.photosCount} alt={data.name} href={data.href}/>
 				</div>
 
 				{/*Szczegóły zbiórki*/}
@@ -100,7 +99,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 					<div className='p-[1.5rem] flex flex-col gap-[1rem]'>
 						<div className='flex flex-col gap-[0.5rem]'>
 							<p className='text-myGray2'>Cel zbiórki:</p>
-							<p>Finansowanie turnusu rehabilitacyjnego w specjalistycznym ośrodku</p>
+							<p>{data.celZbiorki}</p>
 						</div>
 						<div className='
 							grid 
@@ -108,22 +107,30 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 							gap-[0.5rem]
 							grid-cols-2
 						'>
-							<div className='grow flex gap-[0.5rem] items-center'>
-								<BsPerson size={18} className='text-myGray2'/>
-								<p>{data.name}</p>
-							</div>
-							<div className='flex gap-[0.5rem] items-center'>
-								<BsFilePerson size={18} className='text-myGray2'/>
-								<p>{data.age} lat</p>
-							</div>
-							<div className='flex gap-[0.5rem] items-center'>
-								<HiOutlineLocationMarker size={18} className='text-myGray2'/>
-								<p>{data.city}</p>
-							</div>
-							<div className='flex gap-[0.5rem] items-center'>
-								<GiStethoscope size={18} className='text-myGray2'/>
-								<p>{data.nazwaChoroby}</p>
-							</div>
+							{data.name && 
+								<div className='grow flex gap-[0.5rem] items-center'>
+									<BsPerson size={18} className='text-myGray2'/>
+									<p>{data.name}</p>
+								</div>
+							}
+							{data.age !== 0 &&
+								<div className='flex gap-[0.5rem] items-center'>
+									<BsFilePerson size={18} className='text-myGray2'/>
+									<p>{data.age} lat</p>
+								</div>
+							}
+							{data.city && 
+								<div className='flex gap-[0.5rem] items-center'>
+									<HiOutlineLocationMarker size={18} className='text-myGray2'/>
+									<p>{data.city}</p>
+								</div>
+							}
+							{data.nazwaChoroby && 
+								<div className='flex gap-[0.5rem] items-center'>
+									<GiStethoscope size={18} className='text-myGray2'/>
+									<p>{data.nazwaChoroby}</p>
+								</div>
+							}
 						</div>
 					</div>
 				</div>
@@ -160,12 +167,13 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 				h-min
 			'>
 				<div className='w-full outline outline-1 outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
-					<div className='relative flex gap-[0.5rem] text-white bg-primary p-[1.5rem]'>
+					<div className={`relative flex gap-[0.5rem] text-white p-[1.5rem] bg-primary `}>
 						<p className='relative text-[1.25rem] font-bold'>{data.name}</p>
 					</div>
 					<div className='p-[1.5rem]'>
 						<div className='flex flex-col gap-[0.75rem]'>
-							<div className='overflow-hidden relative outline outline-1 last:outline-none text-primary py-[0.5rem] rounded-[2rem]'>
+							<div className={`overflow-hidden relative outline outline-1 last:outline-none text-primary py-[0.5rem] rounded-[2rem] ${data.isFinished ? 'outline-success' : 'outline-primary'}`}>
+								{/*Percentage */}
 								<div 
 									style={{
 										width: data.isFinished ? '100%' : `${fundraisedPercentage}%`,
@@ -178,6 +186,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 										animate-pulse
 									'
 								/>
+								{/*Value donated*/}
 								<div className='relative flex gap-[1rem] justify-center items-center'>
 									<p className='font-bold text-[1.5rem]'>
 										{totalDonatedValue} zł
@@ -206,6 +215,11 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 							}
 						</div>
 					</div>
+					{data.isFinished && 
+						<div className='p-[1.5rem] text-center outline outline-1 outline-myGray'>
+							Dziękujemy każdemu za wsparcie oraz zaufanie :)
+						</div>
+					}
 					<DonationList donations={data.donations}/>
 				</div>
 			</div>

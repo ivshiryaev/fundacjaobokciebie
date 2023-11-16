@@ -55,10 +55,12 @@
 	"documents":{
 		"files":[
 			{
-				"title":"Wypis z KRS"	
+				"title":"Wypis z KRS",
+				"fileName":"KRS.pdf"
 			},
 			{
-				"title":"Statut Fundacji"
+				"title":"Statut Fundacji",
+				"fileName":"Statut.pdf"
 			}
 		],
 		"title":"Dokumenty",

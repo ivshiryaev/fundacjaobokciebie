@@ -1,11 +1,9 @@
 import mongoose from 'mongoose'
 
 const zbiorkaSchema = new mongoose.Schema({
-	photos:[
-		{
-			type: String
-		}
-	],
+	photosCount: {
+		type: Number
+	},
 	name: { 
 		type: String
 	},
@@ -19,6 +17,9 @@ const zbiorkaSchema = new mongoose.Schema({
 		type: Number
 	},
 	opisChoroby: {
+		type: String
+	},
+	celZbiorki: {
 		type: String
 	},
 	totalGoal: {

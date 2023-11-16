@@ -15,11 +15,12 @@ async function Zbiorka({id}:{id: string}) {
 
 	const totalDonatedValue = centsToValue(data.totalDonated)
 	const fundraisedPercentage = countPercentage(Number(totalDonatedValue), data.totalGoal)
-	const toGoalValue = data.totalGoal - Number(totalDonatedValue)
+	const toGoalValue = (data.totalGoal - Number(totalDonatedValue)).toFixed()
+
 
 	return (
 			<article
-				className='
+				className={`
 					w-full h-full
 					flex flex-col
 					justify-center items-center
@@ -28,7 +29,7 @@ async function Zbiorka({id}:{id: string}) {
 					transition
 					outline outline-1 outline-myGray
 					hover:shadow-lg
-				'
+				`}
 			>
 				<Link
 					href={`zbiorka/${data.href}`}
@@ -46,9 +47,13 @@ async function Zbiorka({id}:{id: string}) {
 						alt={data.href}
 						fill
 					/>
-					{data.isFinished &&
+					{data.isFinished ?
 						<div className='top-3 right-3 text-success font-semibold absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
-							Zbiórka zakończona
+							Udało się ! :)
+						</div>
+						:
+						<div className='top-3 right-3 text-primary absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
+							Wpłat: {data.donations.length}
 						</div>
 					}
 				</Link>
@@ -61,11 +66,11 @@ async function Zbiorka({id}:{id: string}) {
 				>
 					<div>
 						<p className='text-[1.5rem]'>{data.name}</p>
-						<p className='text-myGray2'>{data.description}</p>
+						<p className='text-myGray2'>{data.nazwaChoroby}</p>
 					</div>
 					<div className='flex flex-col gap-[0.5rem]'>
 						<p className='text-[0.750rem] text-myGray2'>
-							Uzbieraliśmy: {data.isFinished ? data.totalGoal : totalDonatedValue} zł
+							Uzbieraliśmy: {totalDonatedValue} zł
 						</p>
 						<div className='h-[0.25rem] bg-myGray rounded-full overflow-hidden'>
 							<div 
@@ -84,7 +89,7 @@ async function Zbiorka({id}:{id: string}) {
 					</div>
 					<Link href={`zbiorka/${data.href}`}>
 					{data.isFinished ?
-						<Button className='w-full bg-success'>Do zbiórki</Button>
+						<Button className='w-full bg-success'>Zbiórka zakończona</Button>
 						:
 						<Button className='w-full'>Do zbiórki</Button>
 					}

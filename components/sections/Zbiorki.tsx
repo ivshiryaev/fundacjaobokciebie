@@ -32,40 +32,41 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 			>
 				{constants.zbiorki.title}
 			</h4>
-			<div 
-				className='
-					w-full h-full
-					grid
-					grid-cols-1 
-					sm:grid-cols-2
-					lg:grid-cols-3
-					auto-rows-auto
-					justify-center justify-items-center place-content-center
-					gap-[1rem]
-				'
-			>
-				{preview ?
-					data.slice(0,previewDisplayCount).map((zbiorka: any,idx: any) => (
-					<Slide 
-						verticalDirection='up'
-						key={idx}
-						className='w-full h-full'
-					>
-						<Zbiorka id={zbiorka._id}/>
-					</Slide>
-					))
-					:
-					data.map((zbiorka: any,idx: any) => (
-					<Slide 
-						verticalDirection='up'
-						key={idx}
-						className='w-full h-full'
-					>
-						<Zbiorka id={zbiorka._id}/>
-					</Slide>
-					))
-				}
-			</div>
+			{data &&
+				<div 
+					className='
+						h-full w-full
+						grid
+						grid-cols-1 
+						sm:grid-cols-2
+						lg:grid-cols-3
+						justify-center justify-items-center
+						gap-[1rem]
+					'
+				>
+					{preview ?
+						data.slice(0,previewDisplayCount).map((zbiorka: any,idx: any) => (
+							<Slide 
+								verticalDirection='up'
+								key={idx}
+								className='w-full h-full'
+							>
+								<Zbiorka id={zbiorka._id}/>
+							</Slide>
+							))
+							:
+							data.map((zbiorka: any,idx: any) => (
+							<Slide 
+								verticalDirection='up'
+								key={idx}
+								className='w-full h-full'
+							>
+								<Zbiorka id={zbiorka._id}/>
+							</Slide>
+							))
+						}
+				</div>
+			}
 			{ preview &&
 				<Link href='/zbiorki'>
 					<Button>Pełna lista zbiórek</Button>
