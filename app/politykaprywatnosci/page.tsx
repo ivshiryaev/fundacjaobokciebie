@@ -6,7 +6,7 @@ import data from '@/constants/data.json'
 function PolitykaPrywatnosci() {
 	return (
 		<Section className='container mx-auto gap-[4rem]'>
-			<h1 className={`${snap.className} text-primary text-[2rem]`}>
+			<h1 className={`${snap.className} text-primary text-center text-[2rem]`}>
 				{data.politykaPrywatnosci.title}
 			</h1>
 			<div className='flex flex-col max-w-[48rem] gap-[4rem] leading-relaxed'>

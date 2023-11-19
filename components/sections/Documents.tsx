@@ -27,7 +27,7 @@ function Documents() {
 			</FadeIn>
 
 			<FadeIn>
-				<Link href='/dokumenty'>
+				<Link href='/Dokumenty'>
 					<Button
 						className=''
 					>

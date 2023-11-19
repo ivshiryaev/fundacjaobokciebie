@@ -3,23 +3,23 @@
 		"links":[
 			{
 				"title":"Zbiórki",
-				"href":"/zbiorki"
+				"href":"/Zbaiorki"
 			},
 			{
 				"title":"Nowa zbiorka",
-				"href":"/nowazbiorka"
+				"href":"/NowaZbiorka"
 			},
 			{
 				"title":"Wolontariat",
-				"href":"/wolontariat"
+				"href":"/Wolontariat"
 			},
 			{
 				"title":"Dokumenty",
-				"href":"/dokumenty"
+				"href":"/Dokumenty"
 			},
 			{
 				"title":"Skontakuj się",
-				"href":"/contact"
+				"href":"/SkontaktujSie"
 			}
 		]
 	},
@@ -93,15 +93,15 @@
 		"links":[
 			{
 				"title":"Polityka prywatności",
-				"href":"politykaprywatnosci"
+				"href":"PolitykaPrywatnosci"
 			},
 			{
 				"title":"Warunki płatności",
-				"href":"warunkiplatnosci"
+				"href":"WarunkiPlatnosci"
 			},
 			{
 				"title":"RODO",
-				"href":"rodo"
+				"href":"RODO"
 			}
 		],
 		"phoneNumber":"+48500396561",

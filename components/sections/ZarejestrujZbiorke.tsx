@@ -30,7 +30,7 @@ function ZarejestrujZbiorke() {
 				</p>
 			</FadeIn>
 			<FadeIn>
-				<Link href='/nowazbiorka'>
+				<Link href='/NowaZbiorka'>
 					<Button 
 						className={`
 							bg-white

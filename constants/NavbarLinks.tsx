@@ -7,27 +7,27 @@ import { TbMessageCircle2 } from "react-icons/tb"
 const NavbarLinks = [
 	{
 		"title":"Zbiórki",
-		"href":"/zbiorki",
+		"href":"/Zbiorki",
 		icon:<PiFoldersLight/>,
 	},
 	{
 		"title":"Nowa zbiorka",
-		"href":"/nowazbiorka",
+		"href":"/NowaZbiorka",
 		icon: <HiOutlineDocumentPlus/>
 	},
 	{
 		"title":"Wolontariat",
-		"href":"/wolontariat",
+		"href":"/Wolontariat",
 		icon:<PiPersonSimpleThrowThin/>
 	},
 	{
 		"title":"Dokumenty",
-		"href":"/dokumenty",
+		"href":"/Dokumenty",
 		icon:<HiOutlineClipboardDocumentList/>
 	},
 	{
 		"title":"Skontakuj się",
-		"href":"/contact",
+		"href":"/SkontaktujSie",
 		icon:<TbMessageCircle2/>
 	}
 ]

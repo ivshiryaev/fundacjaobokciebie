@@ -38,6 +38,7 @@ function Navbar() {
 				{isOpen &&
 						<motion.div 
 							className={`
+								lg:hidden
 								fixed
 								top-0 left-0
 								w-full h-full
@@ -46,6 +47,8 @@ function Navbar() {
 								gap-[0.5rem]
 								z-10
 								bg-white
+								overflow-x-hidden
+								overflow-y-auto
 							`}
 							initial={{
 								y:'100%'
@@ -142,38 +145,22 @@ function Navbar() {
 								</ul>
 							</nav>
 
-							
-							<div className='flex gap-[0.5rem] justify-center items-center'>
+							<div className='mt-[1rem] flex gap-[0.5rem] justify-center items-center'>
 								{/*Instagram*/}
 								<Link
 									onClick={handleLinkClick}
 									target='_blank'
 									href='https://www.instagram.com/fundacjaobokciebie'
 									className={`
-										w-fit
-										lg:hidden
 										flex
-										p-[0.125rem]
-										flex gap-[1rem]
-										transition
-										rounded-[2rem]
-										hover:text-white
-										hover:bg-primary
-										flex-row items-center
-										text-[1rem]
-										bg-primary text-white
+										justify-center items-center
+										text-primary text-[1.5rem]
+										shadow-md
+										rounded-full
+										w-[56px] h-[56px]
 									`}
 								>
-									<span className='
-										text-primary
-										bg-white
-										w-[56px] h-[56px] 
-										flex justify-center items-center 
-										rounded-full
-										text-[1.5rem]
-									'>
-										<BsInstagram/>
-									</span>
+									<BsInstagram/>
 								</Link>
 								{/*Facebook*/}
 								<Link
@@ -181,30 +168,15 @@ function Navbar() {
 									href='https://www.facebook.com/fundacjaobokciebie'
 									target='_blank'
 									className={`
-										w-fit
-										lg:hidden
 										flex
-										p-[0.125rem]
-										flex gap-[1rem]
-										transition
-										rounded-[2rem]
-										hover:text-white
-										hover:bg-primary
-										flex-row items-center
-										text-[1rem]
-										bg-primary text-white
+										justify-center items-center
+										text-primary text-[1.5rem]
+										shadow-md
+										rounded-full
+										w-[56px] h-[56px]
 									`}
 								>
-									<span className='
-										text-primary
-										bg-white
-										w-[56px] h-[56px] 
-										flex justify-center items-center 
-										rounded-full
-										text-[1.5rem]
-									'>
-										<BsFacebook/>
-									</span>
+									<BsFacebook/>
 								</Link>
 								{/*Donate button*/}
 								<Link
@@ -212,31 +184,32 @@ function Navbar() {
 									href='https://donate.stripe.com/7sIaGTdxV6XM02A000'
 									target='_blank'
 									className={`
-										w-fit
-										lg:hidden
 										flex
-										p-[0.125rem]
-										flex gap-[1rem]
-										transition
-										rounded-[2rem]
-										hover:text-white
-										hover:bg-primary
-										flex-row items-center
-										text-[1rem]
-										bg-primary text-white
+										justify-center items-center
+										text-primary text-[1.5rem]
+										shadow-md
+										rounded-full
+										w-[56px] h-[56px]
 									`}
 								>
-									<span className='
-										text-primary
-										bg-white
-										w-[56px] h-[56px] 
-										flex justify-center items-center 
-										rounded-full
-										text-[1.5rem]
-									'>
-										<BiDonateHeart/>
-									</span>
+									<BiDonateHeart/>
 								</Link>
+							</div>
+
+							<div className='mt-[2rem] flex flex-col justify-center items-center'>
+								<Link className='text-myGray2' href='/PolitykaPrywatonsci'>
+									Polityka Prywatnosci
+								</Link>
+								<Link className='text-myGray2' href='/RODO'>
+									RODO
+								</Link>
+								<Link className='text-myGray2' href='/WarunkiPlatnosci'>
+									Warunki płatnosci
+								</Link>
+							</div>
+
+							<div className='absolute bottom-4 left-0 w-full items-center flex justify-center'>
+								<p className='text-[0.75rem] text-myGray2 text-center w-full'>Fundacja Obok Ciebie. Wszystkie prawa zastrzeżone</p>
 							</div>
 						</motion.div>
 				}
@@ -362,7 +335,7 @@ function Navbar() {
 				onClick={()=>setIsOpen(!isOpen)}
 			>
 				<span className='
-					outline outline-1 outline-myGray
+					shadow-md
 					lg:hidden
 					text-primary
 					bg-white

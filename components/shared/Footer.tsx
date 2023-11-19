@@ -13,6 +13,7 @@ function Footer() {
 	return (
 		<footer 
 			className='
+				relative
 				text-white text-center font-light
 				w-full bg-primary
 				flex flex-col gap-[1rem]
@@ -70,6 +71,9 @@ function Footer() {
 						fill
 					/>
 				</Link>
+			</div>
+			<div className='w-full items-center flex justify-center'>
+				<p className='text-[0.75rem] text-myGray text-center w-full'>Fundacja Obok Ciebie. Wszystkie prawa zastrzeżone</p>
 			</div>
 		</footer>
 	)

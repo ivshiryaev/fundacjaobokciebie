@@ -4,6 +4,12 @@ const zbiorkaSchema = new mongoose.Schema({
 	photosCount: {
 		type: Number
 	},
+	startedAt: {
+		type: String
+	},
+	finishedAt: {
+		type: String
+	},
 	name: { 
 		type: String
 	},
@@ -38,9 +44,6 @@ const zbiorkaSchema = new mongoose.Schema({
 		type: Boolean
 	},
 	totalDonated: {
-		type: Number
-	},
-	donationsCount: {
 		type: Number
 	},
 	nazwaChoroby: {

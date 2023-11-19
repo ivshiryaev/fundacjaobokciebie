@@ -54,7 +54,7 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 				</div>
 			}
 			{ preview &&
-				<Link href='/zbiorki'>
+				<Link href='/Zbiorki'>
 					<Button>Pełna lista zbiórek</Button>
 				</Link>
 			}

@@ -34,7 +34,7 @@ async function Zbiorka({id}:{id: string}) {
 					`}
 				>
 					<Link
-						href={`zbiorka/${data.href}`}
+						href={`Zbiorka/${data.href}`}
 						className='
 							relative
 							w-full
@@ -89,7 +89,7 @@ async function Zbiorka({id}:{id: string}) {
 								Cel: {data.totalGoal} zł
 							</p>
 						</div>
-						<Link href={`zbiorka/${data.href}`}>
+						<Link href={`Zbiorka/${data.href}`}>
 						{data.isFinished ?
 							<Button className='w-full bg-success'>Zbiórka zakończona</Button>
 							:

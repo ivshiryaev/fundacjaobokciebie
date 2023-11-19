@@ -18,7 +18,7 @@ function Wolonatriat() {
 			</FadeIn>
 
 			<FadeIn>
-				<Link href='/wolontariat'>
+				<Link href='/Wolontariat'>
 					<Button 
 						className={`
 							bg-white

@@ -17,6 +17,8 @@ import { countPercentage } from '@/lib/utils'
 import Swiper from '@/components/swiper/ImageSwiper'
 import Slide from '@/components/animations/Slide'
 
+import HistoryBack from '@/components/features/HistoryBack'
+
 import { getZbiorkaByHref } from '@/lib/actions/zbiorka.actions'
 
 async function Zbiorka({ params } : { params: { href: string }}) {
@@ -31,6 +33,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 	return (
 		<main
 			className='
+				relative
 				flex flex-col
 				lg:flex-row 
 				lg:gap-[1rem]
@@ -152,7 +155,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 					</div>
 				</Slide>
 
-				{data.isFinished && data.finishedAt &&
+				{data.isFinished &&
 					<Slide 
 						className='flex flex-col justify-center items-center text-center shadow-xl p-[1.5rem] bg-primary rounded-[2rem] text-white'
 						value={50}
@@ -179,19 +182,17 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 					</Slide>
 				}
 
-				{data.startedAt && 
-					<Slide 
-						className='flex flex-col justify-center items-center text-center shadow-xl p-[1.5rem] bg-primary rounded-[2rem] text-white'
-						value={50}
-						verticalDirection='up'
-					>
-						<p className='text-[1.125rem] font-bold'>Rozpoczęcie zbiórki</p>
-						<p className=''>{data.startedAt}</p>
-					</Slide>
-				}
+				<Slide 
+					className='flex flex-col justify-center items-center text-center shadow-xl p-[1.5rem] bg-primary rounded-[2rem] text-white'
+					value={50}
+					verticalDirection='up'
+				>
+					<p className='text-[1.125rem] font-bold'>Rozpoczęcie zbiórki</p>
+					<p className=''>{data.startedAt}</p>
+				</Slide>
 
 				{/*Donations on the mobile*/}
-				{data?.donations &&
+				{data.donations && data?.donations.length > 0 &&
 					<div className='lg:hidden outline outline-1 shadow-xl outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
 						<div className='text-white bg-primary p-[1.5rem]'>
 							<p className='text-[1.125rem] text-center font-bold'>Ostatnie Wpłaty</p>
@@ -273,6 +274,9 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 				}
 				<DonationList donations={data.donations}/>
 			</Slide>
+
+			{/*Back on mobiles*/}
+			<HistoryBack/>
 		</main>
 	)
 }
