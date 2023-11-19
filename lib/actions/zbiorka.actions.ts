@@ -39,7 +39,10 @@ export async function getZbiorkaByHref(href: string){
 		const response = await Zbiorka.findOne({ href: href }).populate({
 			path: 'donations',
 			model: Donation,
-			options: { strictPopulate: false },
+			options: { 
+				strictPopulate: false,
+				sort: { date: 'desc'}
+			}
 		})
 
 		return JSON.stringify(response)

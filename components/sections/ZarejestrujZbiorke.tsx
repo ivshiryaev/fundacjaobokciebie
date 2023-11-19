@@ -4,6 +4,7 @@ import Button from '@/components/button/Button'
 import Link from 'next/link'
 
 import data from '@/constants/data.json'
+import FadeIn from '@/components/animations/FadeIn'
 
 function ZarejestrujZbiorke() {
 	return (
@@ -13,29 +14,35 @@ function ZarejestrujZbiorke() {
 				bg-primary
 			'
 		>
-			<h5 
-				className={`
-					${snap.className}
-					text-[2rem]
-				`}
-			>
-				{data.zarejestrujzbiorke.title}
-			</h5>
-			<p className='whitespace-pre-line text-center'>
-				{data.zarejestrujzbiorke.description}
-			</p>
-			<Link href='/nowazbiorka'>
-				<Button 
+			<FadeIn>
+				<h5 
 					className={`
-						bg-white
-						!text-primary 
-						hover:!text-white
-						hover:outline hover:outline-white
+						${snap.className}
+						text-[2rem]
 					`}
 				>
-					{data.zarejestrujzbiorke.button}
-				</Button>
-			</Link>
+					{data.zarejestrujzbiorke.title}
+				</h5>
+			</FadeIn>
+			<FadeIn>
+				<p className='whitespace-pre-line text-center'>
+					{data.zarejestrujzbiorke.description}
+				</p>
+			</FadeIn>
+			<FadeIn>
+				<Link href='/nowazbiorka'>
+					<Button 
+						className={`
+							bg-white
+							!text-primary 
+							hover:!text-white
+							hover:outline hover:outline-white
+						`}
+					>
+						{data.zarejestrujzbiorke.button}
+					</Button>
+				</Link>
+			</FadeIn>
 		</Section>
 	)
 }

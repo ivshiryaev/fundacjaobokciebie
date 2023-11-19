@@ -6,6 +6,7 @@ import { montserrat } from './fonts'
 import Footer from '@/components/shared/Footer'
 import Navbar from '@/components/shared/Navbar'
 import Divider from '@/components/shared/Divider'
+import Slide from '@/components/animations/Slide'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,6 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
+        <Slide 
+          className='hidden lg:block'
+          value={50}
+          verticalDirection='down'
+        >
+          <Divider />
+        </Slide>
         <Navbar/>
         {children}
         <Divider inverted/>

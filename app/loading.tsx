@@ -3,7 +3,7 @@ import { snap } from '@/app/fonts'
 
 export default function Loading() {
 	return (
-		<div className='animate-pulse h-screen w-full flex flex-col justify-center items-center'>
+		<div className='animate-pulse h-screen w-full flex flex-col justify-center items-center text-center'>
 			<Image
 				className=''
 				src='/icons/Group 1.svg'
@@ -11,7 +11,7 @@ export default function Loading() {
 				height={120}
 				alt='Baloon'
 			/>
-			<p className={`${snap.className} text-[2rem] text-primary`}>Fundacja Obok Ciebie</p>
+			<p className={`${snap.className} text-[1.5rem] lg:text-[2rem] text-primary`}>Fundacja Obok Ciebie</p>
 			<p className='text-sm'>
 				Zawsze jesteśmy <span className='text-primary'>obok ciebie</span> żeby pomóc :)
 			</p>

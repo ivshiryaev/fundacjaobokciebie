@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import Section from '@/components/shared/Section'
@@ -19,16 +21,20 @@ function Footer() {
 			'
 		>
 			<div className='flex gap-[0.5rem]'>
-				<Link href='test'>
+				<Link href='https://www.instagram.com/fundacjaobokciebie' target='_blank'>
 					<BsInstagram className='hover:scale-105 cursor-pointer' size={36}/>
 				</Link>
-				<Link href='test'>
+				<Link href='https://www.facebook.com/fundacjaobokciebie' target='_blank'>
 					<BsFacebook className='hover:scale-105 cursor-pointer' size={36}/>
 				</Link>
 			</div>
 			<p className='whitespace-pre-line'>
 				{data.footer.mainInfo}
 			</p>
+			<div className='flex flex-col'>
+				<Link href={`tel://${data.footer.phoneNumber}`}>{data.footer.phoneNumber}</Link>
+				<Link href={`mailto:${data.footer.email}`}>{data.footer.email}</Link>
+			</div>
 			<p className='whitespace-pre-line'>
 				{data.footer.governmentNumbers}
 			</p>
@@ -54,6 +60,7 @@ function Footer() {
 					cursor-pointer 
 					hover:drop-shadow-lg
 					hover:scale-105
+					transition
 				'
 			>
 				<Link href='/'>

@@ -4,24 +4,33 @@ import Button from '@/components/button/Button'
 import Link from 'next/link'
 
 import data from '@/constants/data.json'
+import FadeIn from '@/components/animations/FadeIn'
 
 function Wolonatriat() {
 	return (
 		<Section className='bg-primary text-white text-center'>
-			<p className={`${snap.className} text-[2rem]`}>{data.wolontariat.title}</p>
-			<p className='whitespace-pre-line'>{data.wolontariat.description}</p>
-			<Link href='/wolontariat'>
-				<Button 
-					className={`
-						bg-white
-						!text-primary 
-						hover:!text-white
-						hover:outline hover:outline-white
-					`}
-				>
-					Chcę dołączyć
-				</Button>
-			</Link>
+			<FadeIn>
+				<p className={`${snap.className} text-[2rem]`}>{data.wolontariat.title}</p>
+			</FadeIn>
+			
+			<FadeIn>
+				<p className='whitespace-pre-line'>{data.wolontariat.description}</p>
+			</FadeIn>
+
+			<FadeIn>
+				<Link href='/wolontariat'>
+					<Button 
+						className={`
+							bg-white
+							!text-primary 
+							hover:!text-white
+							hover:outline hover:outline-white
+						`}
+					>
+						Chcę dołączyć
+					</Button>
+				</Link>
+			</FadeIn>
 		</Section>
 	)
 }

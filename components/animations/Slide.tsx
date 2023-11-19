@@ -4,7 +4,7 @@ import React from 'react'
 import {motion} from 'framer-motion'
 
 function Slide({
-	value = 100,
+	value = 50,
 	verticalDirection,
 	horizontalDirection,
 	children, 

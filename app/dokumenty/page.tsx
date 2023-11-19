@@ -21,7 +21,7 @@ function Dokumenty() {
 			</h2>
 			<div className='
 				w-full 
-				outline outline-1 
+				outline outline-1
 				p-[1.5rem] rounded-[2rem]
 				flex flex-col gap-[1rem]
 			'>
@@ -56,7 +56,7 @@ function Dokumenty() {
 			</div>
 			<div className='
 				w-full 
-				outline outline-1 
+				outline outline-1
 				p-[1.5rem] rounded-[2rem]
 				flex flex-col gap-[1rem]
 			'>

@@ -29,7 +29,7 @@ function Donation({
 							baloons={countBaloons(Number(convertedValue))}
 						/>
 						<div className='flex flex-col grow'>
-							<p className='text-[0.875rem] text-primary'>{name}</p>
+							<p className='text-[0.875rem]'>{name}</p>
 							<p className='text-[0.750rem] text-myGray2'>{date}</p>
 						</div>
 						<div className='flex justify-end items-center'>

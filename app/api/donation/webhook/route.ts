@@ -39,18 +39,22 @@ export async function POST(request: Request) {
 		paymentLinkId
 	})
 
-	console.log(`Created a donation:`)
-
 	const zbiorka = await getZbiorkaByPaymentLinkId(paymentLinkId)
 
-	console.log('zbiorka: ')
-	console.log(zbiorka)
+	if(!zbiorka){
+		return new Response(JSON.stringify({
+			message: 'The donation is created and added to the db, but there is no related paymentLinkId found in Zbiorki',
+			status: 201
+		}))
+	}
 
 	zbiorka.donations.push(newDonation)
+	zbiorka.totalDonated += amount
 
 	await zbiorka.save()
 
-	console.log('Zbiorka is saved')
-
-	return new Response(JSON.stringify({message: 'Post request happened!'}))
+	return new Response(JSON.stringify({
+		message: 'The donation is created and added to the db. The donation is connected to the Zbiorka related paymentLinkId',
+		status: 201
+	}))
 }

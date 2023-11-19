@@ -2,6 +2,7 @@ import Section from '@/components/shared/Section'
 import { snap } from '@/app/fonts'
 
 import data from '@/constants/data.json'
+import FadeIn from '@/components/animations/FadeIn'
 
 function About() {
 	return (
@@ -12,17 +13,21 @@ function About() {
 				bg-primary
 			'
 		>
-			<h2 
-				className={`
-					${snap.className}
-					text-[2rem]
-				`}
-			>
-				{data.about.title}
-			</h2>
-			<p className='whitespace-pre-line text-center'>
-				{data.about.description}
-			</p>
+			<FadeIn>
+				<h2 
+					className={`
+						${snap.className}
+						text-[2rem]
+					`}
+				>
+					{data.about.title}
+				</h2>
+			</FadeIn>
+			<FadeIn>
+				<p className='whitespace-pre-line text-center'>
+					{data.about.description}
+				</p>
+			</FadeIn>
 		</Section>
 	)
 }

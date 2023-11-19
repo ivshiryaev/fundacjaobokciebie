@@ -7,8 +7,6 @@ import Button from '@/components/button/Button'
 import constants from '@/constants/data.json'
 import { getZbiorki } from '@/lib/actions/zbiorka.actions'
 
-import Slide from '@/components/animations/Slide'
-
 //If preview===true shows "Prezjdż do pełnej listy zbiórek" button
 async function Zbiorki({preview = false}:{preview?: boolean}) {
 	const response = await getZbiorki()
@@ -46,23 +44,11 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 				>
 					{preview ?
 						data.slice(0,previewDisplayCount).map((zbiorka: any,idx: any) => (
-							<Slide 
-								verticalDirection='up'
-								key={idx}
-								className='w-full h-full'
-							>
-								<Zbiorka id={zbiorka._id}/>
-							</Slide>
+								<Zbiorka key={idx} id={zbiorka._id}/>
 							))
 							:
 							data.map((zbiorka: any,idx: any) => (
-							<Slide 
-								verticalDirection='up'
-								key={idx}
-								className='w-full h-full'
-							>
-								<Zbiorka id={zbiorka._id}/>
-							</Slide>
+								<Zbiorka key={idx} id={zbiorka._id}/>
 							))
 						}
 				</div>
