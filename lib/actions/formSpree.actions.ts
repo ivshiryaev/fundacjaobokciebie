@@ -4,7 +4,6 @@ const contactFormUrl = process.env.FORMSPREE_CONTACT_FORM_URL ?? ''
 const nowaZbiorkaUrl = process.env.FORMSPREE_NOWA_ZBIORKA_FORM_URL ?? ''
 const wolontariatFormUrl = process.env.FORMSPREE_WOLONTARIAT_FORM_URL ?? ''
 
-
 export async function submitContactForm(data: any){
 	try{
 		const response = await fetch(contactFormUrl, {

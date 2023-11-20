@@ -17,7 +17,6 @@ async function Zbiorka({id}:{id: string}) {
 	const fundraisedPercentage = countPercentage(Number(totalDonatedValue), data.totalGoal)
 	const toGoalValue = (data.totalGoal - Number(totalDonatedValue)).toFixed()
 
-
 	return (
 			<Slide verticalDirection='up' className='w-full h-full'>
 				<article

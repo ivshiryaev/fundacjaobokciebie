@@ -6,12 +6,13 @@ import { convertUnixTimeFormatToDDMMYYYY } from '@/lib/utils'
 
 import { revalidatePath } from 'next/cache'
 
+//Testing the webhook
 export async function GET(request: Request) {
 	console.log(request)
-	return new Response('hi')
+	return new Response('Hello there ! What is the purpose of testing our API ? Are u a hacker 🙃 ? Here is a cat emoji for you 🐈')
 }
 
-
+//Webhook to receive checkout.session.completed from Stripe
 export async function POST(request: Request) {
 	const res = await request.json()
 
@@ -40,8 +41,6 @@ export async function POST(request: Request) {
 		stripeId,
 		paymentLinkId
 	})
-
-	if(newDonation) revalidatePath('/')
 
 	const zbiorka = await getZbiorkaByPaymentLinkId(paymentLinkId)
 

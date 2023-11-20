@@ -10,7 +10,7 @@ import { getDonations } from '@/lib/actions/donation.actions'
 import constants from '@/constants/data.json'
 
 async function LatestDonations() {
-	const response = await getDonations()
+	const response = await getDonations(6)
 	const donations = JSON.parse(response)
 	if(!donations) return null
 

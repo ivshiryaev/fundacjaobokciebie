@@ -43,8 +43,8 @@ function Navbar() {
 								top-0 left-0
 								w-full h-full
 								p-[1rem]
-								flex flex-col justify-center
-								gap-[0.5rem]
+								flex flex-col items-center
+								gap-[1rem]
 								z-10
 								bg-white
 								overflow-x-hidden
@@ -64,46 +64,48 @@ function Navbar() {
 								damping: 15
 							}}
 						>
-							{/*Home button for the mobile*/}
-							<Link
-								onClick={handleLinkClick}
-								href='/'
-								className={`
-									lg:hidden
-									flex
-									p-[0.25rem]
-									flex gap-[1rem]
-									w-full
-									transition
-									rounded-[2rem]
-									hover:text-white
-									hover:bg-primary
-									flex-row items-center
-									text-[1rem]
-									lg:text-[0.875rem]
-									lg:w-fit
-									lg:px-[1rem] lg:py-[0.5rem] 
-									${pathname === '/' && `
-										bg-primary text-white
-									`}
-								`}
-							>
-								<span className='
-									lg:hidden
-									text-primary
-									bg-white
-									w-[56px] h-[56px] 
-									flex justify-center items-center 
-									rounded-full
-									text-[1.5rem]
-								'>
-									<AiOutlineHome/>
-								</span>
-								<p>Strona główna</p>
-							</Link>
 							
-							<nav className='flex justify-center items-center'>
+							<nav className='w-full flex justify-center items-center'>
 								<ul className='w-full lg:w-fit flex flex-col lg:flex-row gap-[0.5rem]'>
+									{/*Home button for the mobile*/}
+									<li>
+										<Link
+											onClick={handleLinkClick}
+											href='/'
+											className={`
+												lg:hidden
+												flex
+												p-[0.25rem]
+												flex gap-[1rem]
+												w-full
+												transition
+												rounded-[2rem]
+												hover:text-white
+												hover:bg-primary
+												flex-row items-center
+												text-[1rem]
+												lg:text-[0.875rem]
+												lg:w-fit
+												lg:px-[1rem] lg:py-[0.5rem] 
+												${pathname === '/' && `
+													bg-primary text-white
+												`}
+											`}
+										>
+											<span className='
+												lg:hidden
+												text-primary
+												bg-white
+												w-[56px] h-[56px] 
+												flex justify-center items-center 
+												rounded-full
+												text-[1.5rem]
+											'>
+												<AiOutlineHome/>
+											</span>
+											<p>Strona główna</p>
+										</Link>
+									</li>
 									{links.map((link,idx) => (
 										<li key={idx}>
 											<Link
@@ -145,7 +147,7 @@ function Navbar() {
 								</ul>
 							</nav>
 
-							<div className='mt-[1rem] flex gap-[0.5rem] justify-center items-center'>
+							<div className='flex gap-[0.5rem] justify-center items-center'>
 								{/*Instagram*/}
 								<Link
 									onClick={handleLinkClick}
@@ -196,20 +198,16 @@ function Navbar() {
 								</Link>
 							</div>
 
-							<div className='mt-[2rem] flex flex-col justify-center items-center'>
-								<Link className='text-myGray2' href='/PolitykaPrywatonsci'>
+							<div className='flex flex-col justify-center items-center'>
+								<Link onClick={handleLinkClick} className='text-myGray2' href='/PolitykaPrywatonsci'>
 									Polityka Prywatnosci
 								</Link>
-								<Link className='text-myGray2' href='/RODO'>
+								<Link onClick={handleLinkClick} className='text-myGray2' href='/RODO'>
 									RODO
 								</Link>
-								<Link className='text-myGray2' href='/WarunkiPlatnosci'>
+								<Link onClick={handleLinkClick} className='text-myGray2' href='/WarunkiPlatnosci'>
 									Warunki płatnosci
 								</Link>
-							</div>
-
-							<div className='absolute bottom-4 left-0 w-full items-center flex justify-center'>
-								<p className='text-[0.75rem] text-myGray2 text-center w-full'>Fundacja Obok Ciebie. Wszystkie prawa zastrzeżone</p>
 							</div>
 						</motion.div>
 				}

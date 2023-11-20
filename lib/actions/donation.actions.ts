@@ -8,11 +8,16 @@ import Zbiorka from '@/lib/models/zbiorka.model'
 import { getPaidCheckoutSessions } from '@/lib/actions/stripe.actions'
 import { convertUnixTimeFormatToDDMMYYYY } from '@/lib/utils'
 
+import { revalidatePath } from 'next/cache'
+
+//Used on the landing page to show the latest donations
 export async function getDonations(limit: number = 9){
 	try{
 		await connectToDB()
 
 		const response = await Donation.find().sort({date: 'desc'}).limit(limit)
+
+		revalidatePath('/')
 
 		return JSON.stringify(response)
 	} catch(error) {
@@ -21,6 +26,7 @@ export async function getDonations(limit: number = 9){
 	return ''
 }
 
+//Used in the webhook when the donation is received
 export async function createDonation(
 	{
 		name = 'Anonimowa wpłata',
@@ -53,6 +59,8 @@ export async function createDonation(
 
 		console.log('new donation created')
 
+		revalidatePath('/')
+
 		return newDonation
 	} catch(error) {
 		console.error((error as Error).message)
@@ -60,6 +68,10 @@ export async function createDonation(
 	return null
 }
 
+
+
+//UTILITIES USED TO RECEIVE ALL THE DONATIONS FROM STRIPE
+// NOT USED IN THE PRODUCTION
 export async function testTheDonationFromStripe(){
 	try{
 		await connectToDB()
@@ -124,16 +136,3 @@ export async function connectTheDonationsToTheZbiorka(){
 		console.error((error as Error).message)
 	}
 }
-
-
-// 2. connect the donations made to the specific child
-
-/* 	1 - Get zbiorka object
-*	2 - get all teh donations array
-*	3 - compare if the donation paymentLinkId === object.paymentLinkId
-*	4 - if true, add the donation to the array of the donations
-*
-*
-*
-*
-*/
