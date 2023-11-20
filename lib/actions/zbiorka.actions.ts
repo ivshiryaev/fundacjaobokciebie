@@ -8,7 +8,7 @@ import Donation from '@/lib/models/donation.model'
 import { revalidatePath } from 'next/cache'
 
 //Returns all the Zbiorka models from the db
-export async function getZbiorki(limit: number){
+export async function getZbiorki(limit?: number){
 	try{
 		await connectToDB()
 

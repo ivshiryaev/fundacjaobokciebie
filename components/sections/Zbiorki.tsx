@@ -61,28 +61,3 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 }
 
 export default Zbiorki
-
-// <Zbiorka
-// 	name='Maria Klausiuk'
-// 	description='SMA'
-// 	fundraisedAmount={10}
-// 	totalGoal={100}
-// />
-// <Zbiorka
-// 	name='Ewa Ponomarek'
-// 	description='MPD'
-// 	fundraisedAmount={440}
-// 	totalGoal={1000}
-// />
-// <Zbiorka
-// 	name='Wiktor Rzodkiewicz'
-// 	description='SMA typu 3'
-// 	fundraisedAmount={200}
-// 	totalGoal={1000}
-// />
-// <Zbiorka
-// 	name='Wiktor Rzodkiewicz'
-// 	description='SMA typu 3'
-// 	fundraisedAmount={200}
-// 	totalGoal={1000}
-// />
