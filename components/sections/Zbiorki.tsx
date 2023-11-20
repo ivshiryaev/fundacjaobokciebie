@@ -7,11 +7,19 @@ import Button from '@/components/button/Button'
 import constants from '@/constants/data.json'
 import { getZbiorki } from '@/lib/actions/zbiorka.actions'
 
-//If preview===true shows "Prezjdż do pełnej listy zbiórek" button
+// If preview, show the "Prezjdż do pełnej listy zbiórek" button on the bottom
+// and fetching only zbiorki from the db limitied by the limit
 async function Zbiorki({preview = false}:{preview?: boolean}) {
-	const previewDisplayCount = 3
+	const limit = 3
 
-	const response = preview ? await getZbiorki(previewDisplayCount) : await getZbiorki()
+	let response
+
+	if(preview){
+		response = await getZbiorki(limit)
+	} else {
+		response = await getZbiorki()
+	}
+
 	const data = JSON.parse(response)
 	if(!data) return null
 
@@ -30,29 +38,19 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 			>
 				{constants.zbiorki.title}
 			</h4>
-			{data &&
-				<div 
-					className='
-						h-full w-full
-						grid
-						grid-cols-1 
-						sm:grid-cols-2
-						lg:grid-cols-3
-						justify-center justify-items-center
-						gap-[1rem]
-					'
-				>
-					{preview ?
-						data.slice(0,previewDisplayCount).map((zbiorka: any,idx: any) => (
-								<Zbiorka key={idx} id={zbiorka._id}/>
-							))
-							:
-							data.map((zbiorka: any,idx: any) => (
-								<Zbiorka key={idx} id={zbiorka._id}/>
-							))
-						}
-				</div>
-			}
+			<div className='
+				h-full w-full
+				grid
+				grid-cols-1 
+				sm:grid-cols-2
+				lg:grid-cols-3
+				justify-center justify-items-center
+				gap-[1rem]
+			'>
+				{data.map((zbiorka: any,idx: any) => (
+						<Zbiorka key={idx} id={zbiorka._id}/>
+				))}
+			</div>
 			{ preview &&
 				<Link href='/Zbiorki'>
 					<Button>Pełna lista zbiórek</Button>
