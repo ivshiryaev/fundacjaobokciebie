@@ -23,6 +23,7 @@ export async function getZbiorki(limit?: number){
 		}
 
 		revalidatePath('/')
+		revalidatePath('/Zbiorki')
 
 		return JSON.stringify(response)
 

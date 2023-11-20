@@ -57,6 +57,7 @@ export async function POST(request: Request) {
 	await zbiorka.save()
 
 	revalidatePath('/')
+	revalidatePath('/Zbiorki')
 
 	return new Response(JSON.stringify({
 		message: 'The donation is created and added to the db. The donation is connected to the Zbiorka related paymentLinkId',
