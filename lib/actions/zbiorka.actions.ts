@@ -22,8 +22,7 @@ export async function getZbiorki(limit?: number){
 			response = await Zbiorka.find()
 		}
 
-		revalidatePath('/')
-		revalidatePath('/Zbiorki')
+		await revalidatePath('/')
 
 		return JSON.stringify(response)
 

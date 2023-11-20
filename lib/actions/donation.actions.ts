@@ -17,7 +17,7 @@ export async function getDonations(limit: number = 9){
 
 		const response = await Donation.find().sort({date: 'desc'}).limit(limit)
 
-		revalidatePath('/')
+		revalidatePath('/','layout')
 
 		return JSON.stringify(response)
 	} catch(error) {
@@ -59,7 +59,7 @@ export async function createDonation(
 
 		console.log('new donation created')
 
-		revalidatePath('/')
+		revalidatePath('/', 'layout')
 
 		return newDonation
 	} catch(error) {

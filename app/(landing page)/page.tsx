@@ -8,6 +8,10 @@ import Wolontariat from '@/components/sections/Wolontariat'
 import ContactUs from '@/components/sections/ContactUs'
 import Divider from '@/components/shared/Divider'
 
+// revalidatePath('/') - in server actions isn't working
+// so i decided to make this page dynamically rendered
+export const dynamic = 'force-dynamic'
+
 function LandingPage() {
 	return (
 		<main 
