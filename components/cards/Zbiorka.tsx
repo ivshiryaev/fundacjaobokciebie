@@ -8,7 +8,6 @@ import { countPercentage } from '@/lib/utils'
 import { getZbiorkaById } from '@/lib/actions/zbiorka.actions'
 import Slide from '@/components/animations/Slide'
 
-//TODO: rename alt props of the images
 async function Zbiorka({id}:{id: string}) {
 	const response = await getZbiorkaById(id)
 	const data = JSON.parse(response)
@@ -46,7 +45,7 @@ async function Zbiorka({id}:{id: string}) {
 						<Image
 							className='object-cover pointer-events-none'
 							src={`/images/zbiorki/${data.href}/1.jpg`}
-							alt={data.href}
+							alt={data.name}
 							fill
 						/>
 						{data.isFinished ?

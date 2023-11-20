@@ -4,6 +4,8 @@ import { createDonation } from '@/lib/actions/donation.actions'
 import { getZbiorkaByPaymentLinkId } from '@/lib/actions/zbiorka.actions'
 import { convertUnixTimeFormatToDDMMYYYY } from '@/lib/utils'
 
+import { revalidatePath } from 'next/cache'
+
 export async function GET(request: Request) {
 	console.log(request)
 	return new Response('hi')
@@ -39,6 +41,8 @@ export async function POST(request: Request) {
 		paymentLinkId
 	})
 
+	if(newDonation) revalidatePath('/')
+
 	const zbiorka = await getZbiorkaByPaymentLinkId(paymentLinkId)
 
 	if(!zbiorka){
@@ -52,6 +56,8 @@ export async function POST(request: Request) {
 	zbiorka.totalDonated += amount
 
 	await zbiorka.save()
+
+	revalidatePath('/')
 
 	return new Response(JSON.stringify({
 		message: 'The donation is created and added to the db. The donation is connected to the Zbiorka related paymentLinkId',
