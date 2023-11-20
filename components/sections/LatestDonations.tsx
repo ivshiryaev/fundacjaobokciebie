@@ -16,6 +16,7 @@ async function LatestDonations() {
 
 	return (
 		<Section
+			id='donations'
 			className='
 				container mx-auto
 			'

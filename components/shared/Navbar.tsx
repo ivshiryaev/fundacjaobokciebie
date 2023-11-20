@@ -199,7 +199,7 @@ function Navbar() {
 							</div>
 
 							<div className='flex flex-col justify-center items-center'>
-								<Link onClick={handleLinkClick} className='text-myGray2' href='/PolitykaPrywatonsci'>
+								<Link onClick={handleLinkClick} className='text-myGray2' href='/PolitykaPrywatnosci'>
 									Polityka Prywatnosci
 								</Link>
 								<Link onClick={handleLinkClick} className='text-myGray2' href='/RODO'>

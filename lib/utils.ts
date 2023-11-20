@@ -44,7 +44,7 @@ export function countBaloons(value: number){
 }
 
 export function convertUnixTimeFormatToDDMMYYYY(rawDate: number){
-	const convertedDate = moment.unix(rawDate)
+	const convertedDate = moment.unix(rawDate).utcOffset('+0100')
 
 	const DDMMYYYY = moment(convertedDate).format('L')
 	const HOURMINUTESECONDS = moment(convertedDate).format('HH:mm:ss')
