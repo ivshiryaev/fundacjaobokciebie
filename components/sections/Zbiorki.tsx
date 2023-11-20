@@ -9,11 +9,11 @@ import { getZbiorki } from '@/lib/actions/zbiorka.actions'
 
 //If preview===true shows "Prezjdż do pełnej listy zbiórek" button
 async function Zbiorki({preview = false}:{preview?: boolean}) {
-	const response = await getZbiorki()
+	const previewDisplayCount = 3
+
+	const response = preview ? await getZbiorki(previewDisplayCount) : await getZbiorki()
 	const data = JSON.parse(response)
 	if(!data) return null
-
-	const previewDisplayCount = 3
 
 	return (
 		<Section 
