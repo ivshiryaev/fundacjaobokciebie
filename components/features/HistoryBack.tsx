@@ -8,7 +8,7 @@ function HistoryBack() {
 
 	return (
 		<button 
-			className='fixed bottom-[1rem] left-[1rem] lg:hidden'
+			className='fixed bottom-[1rem] left-[1rem] lg:hidden z-10'
 			onClick={()=>router.back()}
 		>
 			<span className='

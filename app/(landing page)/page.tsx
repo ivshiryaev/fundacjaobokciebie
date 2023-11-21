@@ -12,6 +12,15 @@ import Divider from '@/components/shared/Divider'
 // so i decided to make this page dynamically rendered
 export const dynamic = 'force-dynamic'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+	title: 'Strona Główna',
+	description: 'Nasza fundacja pomaga w trudnych sytuacjach życiowych, wspierając osoby niepełnosprawne, seniorów oraz promując zdrowy tryb życia. Załóż zbiórkę już dziś!',
+	alternates: {
+        canonical: '/',
+    },
+}
+
 function LandingPage() {
 	return (
 		<main 

@@ -29,15 +29,27 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 				container mx-auto
 			'
 		>
-			<h4 
-				className={`
-					text-primary
-					${snap.className}
-					text-[2rem]
-				`}
-			>
-				{constants.zbiorki.title}
-			</h4>
+			{preview ?
+				<h4 
+					className={`
+						text-primary
+						${snap.className}
+						text-[2rem]
+					`}
+				>
+					{constants.zbiorki.title}
+				</h4>
+				:
+				<h1
+					className={`
+						text-primary
+						${snap.className}
+						text-[2rem]
+					`}
+				>
+					{constants.zbiorki.title}
+				</h1>
+			}
 			<div className='
 				h-full w-full
 				grid
@@ -48,7 +60,7 @@ async function Zbiorki({preview = false}:{preview?: boolean}) {
 				gap-[1rem]
 			'>
 				{data.map((zbiorka: any,idx: any) => (
-						<Zbiorka key={idx} id={zbiorka._id}/>
+					<Zbiorka key={idx} id={zbiorka._id}/>
 				))}
 			</div>
 			{ preview &&

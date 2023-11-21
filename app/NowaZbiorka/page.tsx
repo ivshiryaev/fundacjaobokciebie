@@ -5,6 +5,15 @@ import NowaZbiorkaForm from '@/components/forms/NowaZbiorkaForm'
 
 import data from '@/constants/data.json'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+	title: '🎈 Załóż zbiórkę',
+	description: 'Załóż zbiórkę i zbieraj na swoje potrzeby :)',
+	alternates: {
+    	canonical: '/NowaZbiorka',
+    },
+}
+
 function NowaZbiorka() {
 	return (
 		<Section className='text-primary lg:container lg:mx-auto'>

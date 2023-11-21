@@ -21,6 +21,35 @@ import HistoryBack from '@/components/features/HistoryBack'
 
 import { getZbiorkaByHref } from '@/lib/actions/zbiorka.actions'
 
+//Dynamic metadata, code from next.js documentation
+import { Metadata, ResolvingMetadata } from 'next'
+
+export async function generateMetadata(
+	{ params } : { params: { href: string}},
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  // read route params
+  const href = params.href
+
+  //Fetch data
+  const response = await getZbiorkaByHref(params.href)
+  const data = JSON.parse(response)
+ 
+  return {
+    title: data.name,
+    description: `${data.name} - zapoznaj się ze szczegółami zbiórki.`,
+    openGraph: {
+        title: data.name,
+        description: `${data.name} - zapoznaj się ze szczegółami zbiórki.`,
+        url: '/',
+    },
+    alternates:{
+    	canonical:`/Zbiorka/${data.href}`
+    }
+  }
+}
+
 async function Zbiorka({ params } : { params: { href: string }}) {
 	const response = await getZbiorkaByHref(params.href)
 	const data = JSON.parse(response)

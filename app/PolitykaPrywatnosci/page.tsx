@@ -3,6 +3,15 @@ import { snap } from '@/app/fonts'
 
 import data from '@/constants/data.json'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+	title: 'Polityka Prywatności',
+	description: 'Polityka Prywatności. Dowiedz się w jaki sposób przetwarzamy dane osobowe.',
+	alternates: {
+    	canonical: '/PolitykaPrywatnosci',
+    },
+}
+
 function PolitykaPrywatnosci() {
 	return (
 		<Section className='container mx-auto gap-[4rem]'>

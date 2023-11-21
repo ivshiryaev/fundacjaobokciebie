@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { AiOutlineHome, AiOutlineClose } from "react-icons/ai"
+import { AiOutlineMenu, AiOutlineHome, AiOutlineClose } from "react-icons/ai"
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsInstagram, BsFacebook } from "react-icons/bs"
 
@@ -43,9 +43,9 @@ function Navbar() {
 								top-0 left-0
 								w-full h-full
 								p-[1rem]
-								flex flex-col items-center
+								flex flex-col items-center justify-between
 								gap-[1rem]
-								z-10
+								z-20
 								bg-white
 								overflow-x-hidden
 								overflow-y-auto
@@ -329,7 +329,7 @@ function Navbar() {
 
 			{/*BurgerMenu*/}
 			<button 
-				className='fixed top-[1rem] right-[1rem] z-10'
+				className='fixed top-[1rem] right-[1rem] z-20'
 				onClick={()=>setIsOpen(!isOpen)}
 			>
 				<span className='
@@ -342,7 +342,7 @@ function Navbar() {
 					rounded-full
 					text-[1.5rem]
 				'>
-					{ isOpen ? <AiOutlineClose/> : <AiOutlineHome/> }
+					{ isOpen ? <AiOutlineClose/> : <AiOutlineMenu/> }
 				</span>
 			</button>
 		</>

@@ -5,6 +5,15 @@ import WolontariatForm from '@/components/forms/WolontariatForm'
 
 import data from '@/constants/data.json'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+	title: '🤸‍ Wolontariat',
+	description: 'Dołącz do ekipy wolontariuszy.',
+	alternates: {
+    	canonical: '/Wolontariat',
+    },
+}
+
 function NowaZbiorka() {
 	return (
 		<Section className='text-primary lg:container lg:mx-auto'>

@@ -5,6 +5,15 @@ import { snap } from '@/app/fonts'
 
 import data from '@/constants/data.json'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+	title: '📃 Dokumenty',
+	description: 'Zobacz dokumenty naszej fundacji.',
+	alternates: {
+    	canonical: '/Dokumenty',
+    },
+}
+
 function Dokumenty() {
 	return (
 		<Section className='text-primary lg:container lg:mx-auto'>
@@ -25,19 +34,19 @@ function Dokumenty() {
 				p-[1.5rem] rounded-[2rem]
 				flex flex-col gap-[1rem]
 			'>
-				<p className='text-[1.25rem] font-semibold'>
+				<h3 className='text-[1.25rem] font-semibold'>
 					{data.documents.mainInfo.title}
-				</p>
-				<p className='whitespace-pre-line'>
+				</h3>
+				<h4 className='whitespace-pre-line'>
 					{data.documents.mainInfo.description}
-				</p>
-				<p className='whitespace-pre-line font-semibold'>
+				</h4>
+				<h5 className='whitespace-pre-line font-semibold'>
 					{data.documents.governmentNumbers}
-				</p>
-				<div className='flex flex-col'>
+				</h5>
+				<h6 className='flex flex-col'>
 					<p>Nr konta</p>
 					<p>{data.documents.nrKonta}</p>
-				</div>
+				</h6>
 			</div>
 			<div className='grid grid-flow-row lg:grid-flow-col gap-[1rem] w-full'>
 				{data.documents.files.map((item,idx) => (
