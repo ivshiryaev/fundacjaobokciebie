@@ -1,7 +1,3 @@
-##Fundraising platform
-
-https://fundacjaobokciebie.com
-
 Fundraising platform for charity foundation where users can discover all the fundraisers and see all the donations.
 
 What i made ?
