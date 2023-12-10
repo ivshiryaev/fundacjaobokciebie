@@ -8,8 +8,8 @@ import { snap } from '@/app/fonts'
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-	title: 'Zbiorki',
-	description: 'Zbiórki które obecnie prowadzimy.',
+	title: 'Zbiorki które prowadzimy',
+	description: 'Zapoznaj się z listą zbiórek które prowadzimy. Bądź bohaterem i wesprzyj potrzebujących | Fundacja Obok Ciebie',
 	alternates: {
     	canonical: '/Zbiorki',
     },

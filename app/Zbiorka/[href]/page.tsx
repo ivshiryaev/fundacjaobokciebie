@@ -37,11 +37,11 @@ export async function generateMetadata(
   const data = JSON.parse(response)
  
   return {
-    title: data.name,
-    description: `${data.name} - zapoznaj się ze szczegółami zbiórki.`,
+    title: `${data.name} - zbiórka charytatywna`,
+    description: `${data.name} | ${data.celZbiorki} | Fundacja Obok Ciebie`,
     openGraph: {
         title: data.name,
-        description: `${data.name} - zapoznaj się ze szczegółami zbiórki.`,
+        description: `${data.name} | ${data.celZbiorki} | Fundacja Obok Ciebie`,
         url: '/',
     },
     alternates:{
@@ -105,11 +105,11 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 									animate-pulse
 								'
 							/>
-							<div className='relative flex gap-[1rem] justify-center items-center'>
+							<h2 className='relative flex gap-[1rem] justify-center items-center'>
 								<p className='font-bold text-[1.5rem]'>{totalDonatedValue} zł</p>
 								<p>/</p>
 								<p>{data.totalGoal} zł</p>
-							</div>
+							</h2>
 						</div>
 						<Link className='w-full' href={data.paymentLinkUrl || ''}>
 							<Button className='w-full text-[1.5rem]'>
@@ -148,7 +148,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 				>
 					<div className='flex flex-col p-[1.5rem] bg-primary text-white'>
 						<p className='text-[1.125rem] font-bold'>Cel zbiórki:</p>
-						<p>{data.celZbiorki}</p>
+						<h3>{data.celZbiorki}</h3>
 					</div>
 					<div className='
 						p-[1.5rem]
@@ -206,7 +206,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 							<p className='text-[1.125rem] font-bold'>Opis zbiórki</p>
 						</div>
 						<div className='p-[1.5rem]'>
-							<p className='whitespace-pre-wrap'>{data.opisChoroby}</p>
+							<h4 className='whitespace-pre-wrap'>{data.opisChoroby}</h4>
 						</div>
 					</Slide>
 				}
@@ -290,7 +290,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 									</Button>
 								</Link>
 								<div className='flex justify-center items-center'>
-									<p className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</p>
+									<h5 className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</h5>
 								</div>
 							</>
 						}

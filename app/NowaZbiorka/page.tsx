@@ -7,8 +7,8 @@ import data from '@/constants/data.json'
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-	title: '🎈 Załóż zbiórkę',
-	description: 'Załóż zbiórkę i zbieraj na swoje potrzeby :)',
+	title: '🎈 Załóż zbiórkę i zbieraj na Fundacjaobokciebie.com',
+	description: 'Załóż zbiórkę i zbieraj środki finansowe na polskim portalu charytatywnym :)',
 	alternates: {
     	canonical: '/NowaZbiorka',
     },
