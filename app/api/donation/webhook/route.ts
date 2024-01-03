@@ -5,6 +5,7 @@ import { getZbiorkaByPaymentLinkId } from '@/lib/actions/zbiorka.actions'
 import { convertUnixTimeFormatToDDMMYYYY } from '@/lib/utils'
 
 import { revalidatePath } from 'next/cache'
+const moment = require('moment')
 
 //Testing the webhook
 export async function GET(request: Request) {
@@ -31,13 +32,15 @@ export async function POST(request: Request) {
 	const amount = checkoutSession.amount_total || 0
 	const paymentLinkId = checkoutSession.payment_link || ''
 	const stripeId = checkoutSession.id || ''
-	const date = convertUnixTimeFormatToDDMMYYYY(checkoutSession.created)
+
+	const rawDate = new Date()
+	const formattedDate = moment(rawDate).format('DD-MM-YYYY HH:mm:ss')
 
 	const newDonation = await createDonation({
 		name,
 		comment,
 		amount,
-		date,
+		date: formattedDate,
 		stripeId,
 		paymentLinkId
 	})
