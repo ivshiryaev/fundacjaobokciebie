@@ -32,14 +32,14 @@ export async function createDonation(
 		name = 'Anonimowa wpłata',
 		comment = '',
 		amount,
-		date,
+		createdAt,
 		stripeId,
 		paymentLinkId = ''
 	}:{
 		name: string,
 		comment: string,
 		amount: number,
-		date: string,
+		createdAt: Date,
 		stripeId: string,
 		paymentLinkId: string
 	}){
@@ -50,16 +50,12 @@ export async function createDonation(
 			name: name,
 			comment: comment,
 			amount: amount,
-			date: date,
+			createdAt: createdAt,
 			stripeId: stripeId,
 			paymentLinkId: paymentLinkId
 		})
 
 		await newDonation.save()
-
-		console.log('new donation created')
-
-		revalidatePath('/', 'layout')
 
 		return newDonation
 	} catch(error) {
