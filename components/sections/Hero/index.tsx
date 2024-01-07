@@ -7,11 +7,13 @@ import { snap } from '@/app/fonts'
 import data from '@/constants/data.json'
 
 import Slide from '@/components/animations/Slide'
+// import FlyingBaloon from './FlyingBaloon'
 
 function Hero() {
 	return (
 		<Section 
 			className='
+				relative
 				text-primary
 				min-h-screen
 			'
