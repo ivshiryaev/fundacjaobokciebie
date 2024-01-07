@@ -19,6 +19,7 @@ function Donation({
 }) {
 
 	const convertedValue = centsToValue(amount)
+	const localeDate = new Date(date).toLocaleString()
 
 	if(displayInRow){
 		return(
@@ -30,7 +31,7 @@ function Donation({
 						/>
 						<div className='flex flex-col grow'>
 							<p className='text-[0.875rem]'>{name}</p>
-							<p className='text-[0.750rem] text-myGray2'>{date}</p>
+							<p className='text-[0.750rem] text-myGray2'>{localeDate}</p>
 						</div>
 						<div className='flex justify-end items-center'>
 							<p className='text-[1.5rem] w-max font-bold text-primary'>{convertedValue} zł</p>
@@ -66,7 +67,7 @@ function Donation({
 					{name}
 				</p>
 				<p className='text-[0.750rem] text-myGray2'>
-					{date}
+					{localeDate}
 				</p>
 			</div>
 			<div className='flex flex-col justify-center items-center'>
