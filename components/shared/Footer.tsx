@@ -72,8 +72,9 @@ function Footer() {
 					/>
 				</Link>
 			</div>
-			<div className='w-full items-center flex justify-center'>
+			<div className='w-full items-center flex flex-col justify-center'>
 				<p className='text-[0.75rem] text-myGray text-center w-full'>Fundacja Obok Ciebie. Wszystkie prawa zastrzeżone</p>
+				<p className='text-[0.75rem] text-myGray text-center w-full'>Website made by:<Link href='https://theshirya.xyz' target='_blank'>theshirya</Link></p>
 			</div>
 		</footer>
 	)
