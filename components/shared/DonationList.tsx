@@ -40,7 +40,7 @@ function DonationList({donations} : {donations: any[]}) {
 						displayInRow
 						name={item.name}
 						comment={item.comment}
-						date={item.date}
+						date={item?.createdAt}
 						amount={item.amount}
 					/>
 				</Slide>
