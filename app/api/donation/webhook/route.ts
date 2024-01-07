@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 	const stripeId = checkoutSession.id || ''
 
 	const rawDate = new Date()
-	const formattedDate = moment(rawDate).format('DD-MM-YYYY HH:mm:ss')
+	const formattedDate = moment(rawDate).format('MM/DD/YYYY, HH:mm:ss')
 
 	const newDonation = await createDonation({
 		name,
