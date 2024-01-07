@@ -15,7 +15,7 @@ export async function getDonations(limit: number = 9){
 	try{
 		await connectToDB()
 
-		const response = await Donation.find().sort({date: 'desc'}).limit(limit)
+		const response = await Donation.find().sort({createdAt: 'desc'}).limit(limit)
 
 		revalidatePath('/','layout')
 
@@ -68,7 +68,39 @@ export async function createDonation(
 	return null
 }
 
+//TEST
+export async function testFunction(){
+	try{
+		await connectToDB()
 
+		const dateNow = new Date()
+
+		const donations = await Donation.find()
+
+		await Promise.all(donations.map(async (donation) => {
+			const date = new Date(donation?.date)
+
+			console.log(date)
+			const res = await Donation.findOneAndUpdate({_id: donation._id}, {createdAt: date})
+
+			console.log(res)
+		}))
+
+		// console.log(donations)
+
+		// //Map over all the donations and create .createdAt field based on .date field
+		// donations.map(donation => {
+		// 	const date = new Date(donation?.date)
+		// 	donation.createdAt = date
+		// })
+
+		// await donations.save()
+
+	} catch(error) {
+		console.error((error as Error).message)
+	}
+	return null
+}
 
 //UTILITIES USED TO RECEIVE ALL THE DONATIONS FROM STRIPE
 // NOT USED IN THE PRODUCTION
