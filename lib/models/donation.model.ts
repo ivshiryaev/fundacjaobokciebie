@@ -18,6 +18,9 @@ const donationSchema = new mongoose.Schema({
 	},
 	paymentLinkId:{
 		type: String
+	},
+	createdAt: {
+		type: Date,
 	}
 })
 
