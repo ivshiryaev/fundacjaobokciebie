@@ -58,7 +58,7 @@ export async function getZbiorkaByHref(href: string){
 			model: Donation,
 			options: { 
 				strictPopulate: false,
-				sort: { date: 'desc'}
+				sort: { createdAt: 'desc'}
 			}
 		})
 
