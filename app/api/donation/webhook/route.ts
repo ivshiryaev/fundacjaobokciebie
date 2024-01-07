@@ -32,15 +32,13 @@ export async function POST(request: Request) {
 	const amount = checkoutSession.amount_total || 0
 	const paymentLinkId = checkoutSession.payment_link || ''
 	const stripeId = checkoutSession.id || ''
-
-	const rawDate = new Date()
-	const formattedDate = moment(rawDate).format('MM/DD/YYYY, HH:mm:ss')
+	const date = new Date()
 
 	const newDonation = await createDonation({
 		name,
 		comment,
 		amount,
-		date: formattedDate,
+		createdAt: date,
 		stripeId,
 		paymentLinkId
 	})
