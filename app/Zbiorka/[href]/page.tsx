@@ -111,14 +111,18 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 								<p>{data.totalGoal} zł</p>
 							</h2>
 						</div>
-						<Link className='w-full' href={data.paymentLinkUrl || ''}>
-							<Button className='w-full text-[1.5rem]'>
-								Wspieram
-							</Button>
-						</Link>
-						<div className='flex justify-center items-center'>
-							<p className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</p>
-						</div>
+						{!data.isFinished &&
+							<>
+								<Link className='w-full' href={data.paymentLinkUrl || ''}>
+									<Button className='w-full text-[1.5rem]'>
+										Wspieram
+									</Button>
+								</Link>
+								<div className='flex justify-center items-center'>
+									<p className='text-myGray2 text-[0.875rem]'>Wpłat: {data.donations.length}</p>
+								</div>
+							</>
+						}
 					</div>
 				</div>
 
@@ -194,7 +198,6 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 						<p className=''>{data.finishedAt}</p>
 					</Slide>
 				}
-
 				{/*Opis zbiórki*/}
 				{data.opisChoroby &&
 					<Slide 
@@ -210,16 +213,16 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 						</div>
 					</Slide>
 				}
-
-				<Slide 
-					className='flex flex-col justify-center items-center text-center shadow-xl p-[1.5rem] bg-primary rounded-[2rem] text-white'
-					value={50}
-					verticalDirection='up'
-				>
-					<p className='text-[1.125rem] font-bold'>Rozpoczęcie zbiórki</p>
-					<p className=''>{data.startedAt}</p>
-				</Slide>
-
+				{data.startedAt &&
+					<Slide 
+						className='flex flex-col justify-center items-center text-center shadow-xl p-[1.5rem] bg-primary rounded-[2rem] text-white'
+						value={50}
+						verticalDirection='up'
+					>
+						<p className='text-[1.125rem] font-bold'>Rozpoczęcie zbiórki</p>
+						<p className=''>{data.startedAt}</p>
+					</Slide>
+				}
 				{/*Donations on the mobile*/}
 				{data.donations && data?.donations.length > 0 &&
 					<div className='lg:hidden outline outline-1 shadow-xl outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
@@ -229,6 +232,11 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 						<DonationList donations={data.donations}/>
 					</div>
 				}
+
+				<div className='gap-2 p-6 bg-white text-sm outline outline-1 shadow-xl outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
+					<p>Jeżeli jesteś podatnikiem rozliczającym się z podatku dochodowego w Polsce i wsparłeś w ubiegłym roku Fundację Obok Ciebie, możesz skorzystać z ulgi podatkowej z tytułu darowizny i zapłacić mniejszy podatek od 6% do 10%</p>
+					<p className='flex justify-center'><Link className='underline' target='_blank' href='https://poradnik.ngo.pl/darowizny#section-4'>Jak to zrobić ?</Link></p>
+				</div>
 			</div>
 
 			{/*Payment section on the laptop*/}
