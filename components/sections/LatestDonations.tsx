@@ -51,7 +51,7 @@ async function LatestDonations() {
 						<Donation
 							name={item.name}
 							comment={item.comment}
-							date={item.createdAt}
+							date={item?.createdAt}
 							amount={item.amount}
 						/>
 					</Slide>
