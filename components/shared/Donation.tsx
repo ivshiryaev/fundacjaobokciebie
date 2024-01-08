@@ -13,7 +13,7 @@ function Donation({
 	name: string,
 	comment: string,
 	amount: number,
-	date: string,
+	date: Date,
 	displayInRow: boolean,
 	className?: string
 }) {
