@@ -8,19 +8,14 @@ import Donation from '@/lib/models/donation.model'
 import { revalidatePath } from 'next/cache'
 
 //Returns all the Zbiorka models from the db
-export async function getZbiorki(limit?: number){
+export async function getZbiorki(limit: number = 9){
 	try{
 		await connectToDB()
 
 		let response
 
-		//If limit is received from props, limit the zbiorki to the limit amount
-		// If there is no limit received from props, return all the zbiorki
-		if(limit){
-			response = await Zbiorka.find().limit(limit)
-		} else {
-			response = await Zbiorka.find()
-		}
+		//finished are at the end, isnt finished at the beginning
+		response = await Zbiorka.find().sort({isFinished: 'asc'}).limit(limit)
 
 		await revalidatePath('/')
 
