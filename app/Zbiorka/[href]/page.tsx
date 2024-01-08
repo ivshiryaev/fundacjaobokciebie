@@ -234,7 +234,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 				}
 
 				<div className='gap-2 p-6 bg-white text-sm outline outline-1 shadow-xl outline-myGray flex flex-col rounded-[2rem] overflow-hidden'>
-					<p>Jeżeli jesteś podatnikiem rozliczającym się z podatku dochodowego w Polsce i wsparłeś w ubiegłym roku Fundację Obok Ciebie, możesz skorzystać z ulgi podatkowej z tytułu darowizny i zapłacić mniejszy podatek od 6% do 10%</p>
+					<p className='text-center'>Jeśli jesteś podatnikiem rozliczającym się z podatku dochodowego w Polsce i wsparłeś w ubiegłym roku Fundację Obok Ciebie, możesz skorzystać z ulgi podatkowej z tytułu darowizny i zapłacić mniejszy podatek od 6% do 10%</p>
 					<p className='flex justify-center'><Link className='underline' target='_blank' href='https://poradnik.ngo.pl/darowizny#section-4'>Jak to zrobić ?</Link></p>
 				</div>
 			</div>
