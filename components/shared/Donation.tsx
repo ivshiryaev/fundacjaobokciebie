@@ -1,3 +1,5 @@
+'use client'
+
 import IconBaloon from '@/components/shared/IconBaloon'
 
 import { countBaloons, centsToValue } from '@/lib/utils'
