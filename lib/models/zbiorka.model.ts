@@ -49,6 +49,9 @@ const zbiorkaSchema = new mongoose.Schema({
 	nazwaChoroby: {
 		type: String
 	},
+	isHidden: {
+		type: Boolean
+	},
 	donations: [
 		{
 			type: mongoose.Schema.Types.ObjectId,

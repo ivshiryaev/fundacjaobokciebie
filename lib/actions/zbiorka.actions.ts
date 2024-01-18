@@ -7,7 +7,19 @@ import Donation from '@/lib/models/donation.model'
 
 import { revalidatePath } from 'next/cache'
 
-//Returns all the Zbiorka models from the db
+export async function updateZbiorkaById(id: string, data: any){
+	try{
+		await connectToDB()
+
+		const response = await Zbiorka.findByIdAndUpdate(id, data)
+
+
+	} catch(e){
+		console.error(e.message)
+	}
+}
+
+//Returns all the Zbiorka models from the db EXCEPT ISHIDDEN === TRUE
 export async function getZbiorki(limit: number = 9){
 	try{
 		await connectToDB()
@@ -15,7 +27,27 @@ export async function getZbiorki(limit: number = 9){
 		let response
 
 		//finished are at the end, isnt finished at the beginning
-		response = await Zbiorka.find().sort({isFinished: 'asc'}).limit(limit)
+		response = await Zbiorka.find({ isHidden: {$exists: false} }).sort({ isFinished: 'asc' }).limit(limit)
+
+		await revalidatePath('/')
+
+		return JSON.stringify(response)
+
+	} catch(error){
+		console.error((error as Error).message)
+	}
+	return ''
+}
+
+//Returns all the Zbiorka models from the db EVEN HIDDEN ONES
+export async function getAllTheZbiorki(){
+	try{
+		await connectToDB()
+
+		let response
+
+		//finished are at the end, isnt finished at the beginning
+		response = await Zbiorka.find().sort({ isFinished: 'asc' })
 
 		await revalidatePath('/')
 
