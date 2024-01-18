@@ -5,13 +5,13 @@ import { getZbiorkaByHref, updateZbiorkaById } from '@/lib/actions/zbiorka.actio
 import Button from '@/components/button/Button'
 
 export default function Zbiorka({ params } : { params: { href: string }}) {
-	const [data, setData] = React.useState({})
+	const [data, setData] = React.useState({name: ''})
 
 	const objectKeys = Object.keys(data).sort()
 
 	React.useEffect(() => {
 		async function fetchData(){
-			const response = await getZbiorkaByHref(params.href)
+			const response = await getZbiorkaByHref(params?.href)
 			const data = JSON.parse(response)
 			if(!data) return null
 
@@ -23,7 +23,7 @@ export default function Zbiorka({ params } : { params: { href: string }}) {
 		fetchData()
 	},[])
 
-	function handleNameChange(e){
+	function handleNameChange(e: React.ChangeEvent<HTMLInputElement>){
 		setData({...data, name: e.target.value})
 	}
 
@@ -35,8 +35,9 @@ export default function Zbiorka({ params } : { params: { href: string }}) {
 	return (
 		<section className='flex flex-col gap-4'>
 			<ul className='flex flex-col gap-2'>
-				{objectKeys.map(objectKey =>(
-					<li key={objectKey}>{objectKey} : {data[objectKey].toString()}</li>
+				{objectKeys.map((objectKey: any) =>(
+					// eslint-disable-next-line
+					<li key={objectKey}>{objectKey}</li>
 				))}
 			</ul>
 			<div className='flex flex-col'>

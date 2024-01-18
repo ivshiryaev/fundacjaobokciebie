@@ -14,8 +14,8 @@ export async function updateZbiorkaById(id: string, data: any){
 		const response = await Zbiorka.findByIdAndUpdate(id, data)
 
 
-	} catch(e){
-		console.error(e.message)
+	} catch(error){
+		console.error((error as Error).message)
 	}
 }
 

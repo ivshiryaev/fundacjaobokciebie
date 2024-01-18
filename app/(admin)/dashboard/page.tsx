@@ -11,7 +11,7 @@ export default async function Dashboard() {
 		<div className='flex flex-col gap-4'>
 			<p>Dashboard</p>
 			<ul className='flex flex-col gap-2'>
-				{data.map(zbiorka => (
+				{data.map((zbiorka: any) => (
 					<li key={zbiorka?._id}>
 						<Link className='p-4 rounded-2xl shadow-lg bg-white block' href={`/dashboard/zbiorka/${zbiorka.href}`}>{zbiorka?.name}</Link>
 					</li>
