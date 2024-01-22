@@ -16,8 +16,10 @@ export default async function Layout({children} : {children: React.ReactNode}) {
 			<div className='flex gap-4'>
 				<HistoryBack/>
 				<LogOutButton/>
-				<Link href='/dashboard' className='hover:shadow-xl hover:bg-white hover:text-primary transition p-4 rounded-2xl text-white bg-primary w-fit text-[1.25rem]'>Admin panel</Link>
-				<div className='p-4 rounded-2xl bg-primary text-white flex items-center'><p>{session?.user?.name}</p></div>
+				<div className='grid'>
+					<p>Zalogowany jako: {session?.user?.name}</p>
+					<p>{session?.user?.email}</p>
+				</div>
 			</div>
 			<main>
 				{children}
