@@ -88,7 +88,7 @@ async function Zbiorka({ params } : { params: { href: string }}) {
 				{/*TotalSum and donate button block for the mobiles*/}
 				<div className='lg:hidden flex flex-col gap-[2rem]'>
 					<div className='flex flex-col justify-center items-center'>
-						<h1 className='text-[2rem]'>{data.name}</h1>
+						<h1 className='text-[2rem] text-center'>{data.name}</h1>
 					</div>
 					<div className='flex flex-col gap-[0.75rem]'>
 						<div className='overflow-hidden relative outline outline-1 text-primary py-[0.5rem] rounded-[2rem]'>
