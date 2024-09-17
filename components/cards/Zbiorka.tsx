@@ -32,7 +32,7 @@ async function Zbiorka({id}:{id: string}) {
 					`}
 				>
 					<Link
-						href={`Zbiorka/${data.href}`}
+						href={`Zbiorka/${data?.href}`}
 						className='
 							relative
 							w-full
@@ -43,17 +43,17 @@ async function Zbiorka({id}:{id: string}) {
 					>
 						<Image
 							className='object-cover pointer-events-none'
-							src={`/images/zbiorki/${data.href}/1.jpg`}
-							alt={data.name}
+							src={`/images/zbiorki/${data?.href}/1.jpg`}
+							alt={data?.name}
 							fill
 						/>
-						{data.isFinished ?
+						{data?.isFinished ?
 							<div className='top-3 right-3 text-success font-semibold absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
 								Udało się ! :)
 							</div>
 							:
 							<div className='top-3 right-3 text-primary absolute px-[1rem] py-[0.5rem] bg-white rounded-[2rem] text-[0.875rem]'>
-								Wpłat: {data.donations.length}
+								Wpłat: {data?.donations?.length}
 							</div>
 						}
 					</Link>
@@ -65,8 +65,8 @@ async function Zbiorka({id}:{id: string}) {
 						'
 					>
 						<div>
-							<p className='text-[1.5rem]'>{data.name}</p>
-							<p className='text-myGray2'>{data.nazwaChoroby}</p>
+							<p className='text-[1.5rem]'>{data?.name}</p>
+							<p className='text-myGray2'>{data?.nazwaChoroby}</p>
 						</div>
 						<div className='flex flex-col gap-[0.5rem]'>
 							<p className='text-[0.750rem] text-myGray2'>
@@ -75,20 +75,20 @@ async function Zbiorka({id}:{id: string}) {
 							<div className='h-[0.25rem] bg-myGray rounded-full overflow-hidden'>
 								<div 
 									style={{
-										width: data.isFinished ? '100%' : `${fundraisedPercentage}%`,
+										width: data?.isFinished ? '100%' : `${fundraisedPercentage}%`,
 									}}
 									className={`
-										${data.isFinished ? 'bg-success' : 'bg-primary'} h-full
+										${data?.isFinished ? 'bg-success' : 'bg-primary'} h-full
 									`}
 								>
 								</div>
 							</div>
 							<p className='text-end text-[0.750rem] text-myGray2'>
-								Cel: {data.totalGoal} zł
+								Cel: {data?.totalGoal} zł
 							</p>
 						</div>
-						<Link href={`Zbiorka/${data.href}`}>
-						{data.isFinished ?
+						<Link href={`Zbiorka/${data?.href}`}>
+						{data?.isFinished ?
 							<Button className='w-full bg-success'>Zbiórka zakończona</Button>
 							:
 							<Button className='w-full'>Do zbiórki</Button>

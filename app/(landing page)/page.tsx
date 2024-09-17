@@ -7,6 +7,7 @@ import Documents from '@/components/sections/Documents'
 import Wolontariat from '@/components/sections/Wolontariat'
 import ContactUs from '@/components/sections/ContactUs'
 import Divider from '@/components/shared/Divider'
+import PromoBanner from '@/components/shared/PromoBanner/index'
 
 // revalidatePath('/') - in server actions isn't working
 // so i decided to make this page dynamically rendered
@@ -31,6 +32,7 @@ function LandingPage() {
 			'
 		>
 			<Hero/>
+			<PromoBanner/>
 			<Divider inverted/>
 			<About/>
 			<Divider/>
