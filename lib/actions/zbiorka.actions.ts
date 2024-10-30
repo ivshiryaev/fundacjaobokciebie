@@ -27,7 +27,7 @@ export async function getZbiorki(limit: number = 9){
 		let response
 
 		//finished are at the end, isnt finished at the beginning
-		response = await Zbiorka.find({ isHidden: {$exists: false} }).sort({ isFinished: 'asc' }).limit(limit)
+		response = await Zbiorka.find({ isHidden: {$exists: false} }).sort({ isFinished: 'asc', totalDonated: 'desc'}).limit(limit)
 
 		await revalidatePath('/')
 

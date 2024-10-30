@@ -7,7 +7,6 @@ import { snap } from '@/app/fonts'
 import data from '@/constants/data.json'
 
 import Slide from '@/components/animations/Slide'
-// import FlyingBaloon from './FlyingBaloon'
 
 function Hero() {
 	return (
@@ -18,7 +17,7 @@ function Hero() {
 				min-h-screen
 			'
 		>
-			<Slide value={50} verticalDirection='down'>
+			<Slide className='pointer-events-auto relative' value={50} verticalDirection='down'>
 				<header 
 					className={`
 						text-center
@@ -35,7 +34,7 @@ function Hero() {
 					</h1>
 				</header>
 			</Slide>
-			<Slide value={50} verticalDirection='up'>
+			<Slide className='pointer-events-auto relative' value={50} verticalDirection='up'>
 				<div className='flex gap-[0.5rem]'>
 					<Link href='https://donate.stripe.com/7sIaGTdxV6XM02A000'>
 						<Button>

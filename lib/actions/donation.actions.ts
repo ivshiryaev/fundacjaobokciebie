@@ -1,6 +1,5 @@
 "use server"
 
-import mongoose from 'mongoose'
 import { connectToDB } from '@/lib/mongoose'
 import Donation from '@/lib/models/donation.model'
 import Zbiorka from '@/lib/models/zbiorka.model'

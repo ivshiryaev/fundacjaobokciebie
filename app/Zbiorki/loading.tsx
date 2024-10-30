@@ -1,5 +1,4 @@
 import Section from '@/components/shared/Section'
-import Zbiorka from '@/components/cards/Zbiorka'
 
 export default function Loading() {
 	return (
