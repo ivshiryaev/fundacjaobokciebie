@@ -1,12 +1,28 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Snowfall from "react-snowfall"
 import { FaRegSnowflake } from "react-icons/fa"
 import { IoPartlySunnyOutline } from "react-icons/io5"
 
+import { getCookie, setCookie } from "@/lib/utils"
+import { showSnowfallCookieName } from "@/constants/index"
+
 export default function ClientSnowfall() {
     const [isSnowing, setIsSnowing] = useState(true)
+
+    useEffect(() => {
+        const showSnowfall = getCookie(showSnowfallCookieName)
+        if (showSnowfall !== "") {
+            setIsSnowing(showSnowfall === "true")
+        }
+    }, [])
+
+    function handleClick() {
+        const newIsSnowing = !isSnowing
+        setIsSnowing(newIsSnowing)
+        setCookie(showSnowfallCookieName, newIsSnowing.toString(), 7) // Cookie expires in 7 days
+    }
 
     return (
         <>
@@ -24,7 +40,7 @@ export default function ClientSnowfall() {
             )}
             <button
                 title="Toggle snowfall effect"
-                onClick={() => setIsSnowing(!isSnowing)}
+                onClick={() => handleClick()}
                 className="                
                     fixed
                     bottom-2.5 right-2.5 z-50
@@ -36,6 +52,7 @@ export default function ClientSnowfall() {
                     hover:bg-white hover:scale-105 hover:text-primary
                     transition-all duration-300
                     active:shadow-inner
+                    bg-opacity-50
                 "
             >
                 {isSnowing ? <IoPartlySunnyOutline /> : <FaRegSnowflake />}
