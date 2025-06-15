@@ -9,7 +9,6 @@ import Footer from "@/components/shared/Footer"
 import Navbar from "@/components/shared/Navbar"
 import Divider from "@/components/shared/Divider"
 import Slide from "@/components/animations/Slide"
-import Snowfall from "@/components/snowfall"
 
 export const metadata: Metadata = {
     title: {
@@ -79,7 +78,6 @@ export default function RootLayout({
                 {children}
                 <Divider inverted />
                 <Footer />
-				<Snowfall />
             </body>
             <Script src="https://www.googletagmanager.com/gtag/js?id=G-8GM18W372R" />
             <Script id="google-analytics">
